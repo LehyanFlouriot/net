@@ -18,6 +18,7 @@ namespace Hector
      
 
         
+        
         public static List<SousFamille> GetSousFamillesOf(int FamilleRefFamille)
         {
             List<SousFamille> SousFamilles = new List<SousFamille>();
@@ -45,6 +46,7 @@ namespace Hector
 
         internal static void InitializeList(TreeView TreeView1)
         {
+            TreeView1.Nodes.Clear();
             TreeNode MainNode = new TreeNode();
             MainNode.Name = "AllArticles";
             MainNode.Text = "Tous les articles";
