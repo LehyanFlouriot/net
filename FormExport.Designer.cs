@@ -86,7 +86,7 @@ namespace Hector
             this.ButtonExport.Name = "ButtonExport";
             this.ButtonExport.Size = new System.Drawing.Size(95, 27);
             this.ButtonExport.TabIndex = 10;
-            this.ButtonExport.Text = "Export";
+            this.ButtonExport.Text = "Exporter";
             this.ButtonExport.UseVisualStyleBackColor = true;
             this.ButtonExport.Click += new System.EventHandler(this.ButtonExport_Click);
             // 

@@ -8,7 +8,7 @@ using System.Windows.Forms;
 using System.Data.SQLite;
 namespace Hector
 {
-    abstract class DataBase
+    public abstract class DataBase
     {
         public static SQLiteConnection Conn;
         private static List<Famille> Familles;

@@ -8,7 +8,7 @@ using System.Data.SQLite;
 
 namespace Hector
 {
-    class Famille
+    public class Famille
     {
         public int RefFamille { get; set; }
         public string Nom { get; set; }

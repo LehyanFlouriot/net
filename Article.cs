@@ -8,7 +8,7 @@ using System.Data.SQLite;
 
 namespace Hector
 {
-    class Article
+    public class Article
     {
 
 
