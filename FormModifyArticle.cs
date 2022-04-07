@@ -108,9 +108,21 @@ namespace Hector
                 CurrentArticle.Description = TextBoxDescription.Text;
 
             }
-
-            //GERER LE CAS OU IL n'Y A PAS DE SOUS FAMILLE et le cas ou si on gere les familles lors du changement de la famille, on change les sous familles associées
+            //requete sql pour appliquer le changement
+            ShowResult();
         }
+
+        private void ShowResult()
+        {
+
+            DialogResult Result = MessageBox.Show("Modifications appliquées avec succès", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //L'utilisateur a dit ok
+            if (Result == DialogResult.OK)
+            {
+                this.Close();
+            }
+        }
+
 
         private void LabelDescription_Click(object sender, EventArgs e)
         {
