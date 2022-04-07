@@ -69,6 +69,18 @@ namespace Hector
             return SousFamilles;
         }
 
+        internal static void RemoveAll()
+        {
+            var Command = new SQLiteCommand("Delete from Articles", DataBase.Conn);
+            Command.ExecuteNonQuery();
+            Command = new SQLiteCommand("Delete from SousFamilles", DataBase.Conn);
+            Command.ExecuteNonQuery();
+            Command = new SQLiteCommand("Delete from Familles", DataBase.Conn);
+            Command.ExecuteNonQuery();
+            Command = new SQLiteCommand("Delete from Marques", DataBase.Conn);
+            Command.ExecuteNonQuery();
+        }
+
 
         /// <summary>
         /// Retourne la liste des Familles de la base de donnée
