@@ -57,6 +57,12 @@
     <Compile Include="FormExport.Designer.cs">
       <DependentUpon>FormExport.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormModify.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormModify.Designer.cs">
+      <DependentUpon>FormModify.cs</DependentUpon>
+    </Compile>
     <Compile Include="FormModifyArticle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -90,6 +96,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormModify.resx">
+      <DependentUpon>FormModify.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormModifyArticle.resx">
       <DependentUpon>FormModifyArticle.cs</DependentUpon>
