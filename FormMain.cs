@@ -131,7 +131,7 @@ namespace Hector
 
         }
 
-        private void listView1_DoubleClick(object sender, EventArgs e)
+        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
         {
 
         }
