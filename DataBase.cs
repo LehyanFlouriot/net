@@ -18,7 +18,6 @@ namespace Hector
      
 
         
-        
         public static List<SousFamille> GetSousFamillesOf(int FamilleRefFamille)
         {
             List<SousFamille> SousFamilles = new List<SousFamille>();
@@ -65,14 +64,14 @@ namespace Hector
             for (int i = 0; i < Familles.Count; i++)
             {
                 TreeNode FamilleXNode = new TreeNode();
-                FamilleXNode.Name = "Famille" + i;
+                FamilleXNode.Name = "Familles" + Familles[i].RefFamille;
                 FamilleXNode.Text = Familles[i].Nom;
                 FamilleNode.Nodes.Add(FamilleXNode);
                 List<SousFamille> SousFamilles = DataBase.GetSousFamillesOf(Familles[i].RefFamille);
                 for (int j = 0; j < SousFamilles.Count; j++)
                 {
                     TreeNode SousFamilleXNode = new TreeNode();
-                    SousFamilleXNode.Name = "SousFamille" + j;
+                    SousFamilleXNode.Name = "SousFamille" + SousFamilles[j].RefSousFamille;
                     SousFamilleXNode.Text = SousFamilles[j].Nom;
                     FamilleXNode.Nodes.Add(SousFamilleXNode);
                 }
@@ -80,12 +79,11 @@ namespace Hector
             for (int i = 0; i < Marques.Count; i++)
             {
                 TreeNode MarqueXNode = new TreeNode();
-                MarqueXNode.Name = "Marque" + i;
+                MarqueXNode.Name = "Marque" + Marques[i].RefMarque;
                 MarqueXNode.Text = Marques[i].Nom;
                 MarquesNode.Nodes.Add(MarqueXNode);
             }
         }
-
         /// <summary>
         /// Retourne la liste des SousFamilles de la base de donnée
         /// </summary>
