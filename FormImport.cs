@@ -67,7 +67,8 @@ namespace Hector
         /// <param name="e"></param>
         private void ButtonOverwrite_Click(object sender, EventArgs e)
         {
-            
+            DataBase.RemoveAll();
+            DataBase.ReadCsv(ImportFilePath, this.ProgressBar);
         }
         /// <summary>
         /// Creer une message box qui affiche les resultats de l'import
