@@ -107,23 +107,84 @@ namespace Hector
             }
             else if (Text == "Familles")
             {
-
+                this.listView1.Columns.Add("Description", -2, HorizontalAlignment.Left);
+                List<Famille> Familles = DataBase.GetFamilles();
+                foreach(Famille Famille in Familles)
+                {
+                    ListViewItem Item = new ListViewItem(Famille.Nom);
+                    this.listView1.Items.Add(Item);
+                }
             }
             else if (Text == "Marques")
             {
-
+                this.listView1.Columns.Add("Description", -2, HorizontalAlignment.Left);
+                List<Marque> Marques = DataBase.GetMarques();
+                foreach (Marque Marque in Marques)
+                {
+                    ListViewItem Item = new ListViewItem(Marque.Nom);
+                    this.listView1.Items.Add(Item);
+                }
             }
-            else if (Name.Contains("Famille"))
+            else if (Name.Contains("Familles"))
             {
-
+                string RefFamille = Name.Substring(8);
+                List<SousFamille> SousFamilles = DataBase.GetSousFamillesOf(Int32.Parse(RefFamille));
+                this.listView1.Columns.Add("Description", -2, HorizontalAlignment.Left);
+                foreach (SousFamille SousFamille in SousFamilles)
+                {
+                    ListViewItem Item = new ListViewItem(SousFamille.Nom);
+                    this.listView1.Items.Add(Item);
+                }
             }
             else if (Name.Contains("SousFamille"))
             {
-
+                string RefSousFamille = Name.Substring(11);
+                this.listView1.Columns.Add("Description", -2, HorizontalAlignment.Left);
+                this.listView1.Columns.Add("Familles", -2, HorizontalAlignment.Left);
+                this.listView1.Columns.Add("Sous-Familles", -2, HorizontalAlignment.Left);
+                this.listView1.Columns.Add("Marques", -2, HorizontalAlignment.Left);
+                this.listView1.Columns.Add("Quantite", -2, HorizontalAlignment.Left);
+                SQLiteCommand Command = new SQLiteCommand("Select Description, Marques.Nom, Familles.Nom, SousFamilles.Nom, Quantite from Articles inner join Marques on Articles.RefMarque = Marques.RefMarque inner join SousFamilles on Articles.RefSousFamille = SousFamilles.RefSousFamille inner join Familles on SousFamilles.RefFamille = Familles.RefFamille where SousFamilles.RefSousFamille=" + Int32.Parse(RefSousFamille), DataBase.Conn);
+                SQLiteDataReader Reader = Command.ExecuteReader();
+                while (Reader.Read())
+                {
+                    string Description = Reader.GetString(0);
+                    string Marque = Reader.GetString(1);
+                    string Famille = Reader.GetString(2);
+                    string SousFamille = Reader.GetString(3);
+                    int Quantite = Reader.GetInt32(4);
+                    ListViewItem Item = new ListViewItem(Description);
+                    Item.SubItems.Add(Famille);
+                    Item.SubItems.Add(SousFamille);
+                    Item.SubItems.Add(Marque);
+                    Item.SubItems.Add(Quantite.ToString());
+                    this.listView1.Items.Add(Item);
+                }
             }
             else if (Name.Contains("Marque"))
             {
-
+                string RefMarque = Name.Substring(6);
+                this.listView1.Columns.Add("Description", -2, HorizontalAlignment.Left);
+                this.listView1.Columns.Add("Familles", -2, HorizontalAlignment.Left);
+                this.listView1.Columns.Add("Sous-Familles", -2, HorizontalAlignment.Left);
+                this.listView1.Columns.Add("Marques", -2, HorizontalAlignment.Left);
+                this.listView1.Columns.Add("Quantite", -2, HorizontalAlignment.Left);
+                SQLiteCommand Command = new SQLiteCommand("Select Description, Marques.Nom, Familles.Nom, SousFamilles.Nom, Quantite from Articles inner join Marques on Articles.RefMarque = Marques.RefMarque inner join SousFamilles on Articles.RefSousFamille = SousFamilles.RefSousFamille inner join Familles on SousFamilles.RefFamille = Familles.RefFamille where Marques.RefMarque=" + Int32.Parse(RefMarque), DataBase.Conn);
+                SQLiteDataReader Reader = Command.ExecuteReader();
+                while (Reader.Read())
+                {
+                    string Description = Reader.GetString(0);
+                    string Marque = Reader.GetString(1);
+                    string Famille = Reader.GetString(2);
+                    string SousFamille = Reader.GetString(3);
+                    int Quantite = Reader.GetInt32(4);
+                    ListViewItem Item = new ListViewItem(Description);
+                    Item.SubItems.Add(Famille);
+                    Item.SubItems.Add(SousFamille);
+                    Item.SubItems.Add(Marque);
+                    Item.SubItems.Add(Quantite.ToString());
+                    this.listView1.Items.Add(Item);
+                }
             }
         }
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
