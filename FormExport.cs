@@ -28,11 +28,40 @@ namespace Hector
 
         }
 
+        /// <summary>
+        /// Creer une message box qui affiche les resultats de l'export
+        /// </summary>
+        private void ShowExportResult()
+        {
+
+            DialogResult Result = MessageBox.Show("Données exportées avec succès", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //L'utilisateur a dit ok
+            if (Result == DialogResult.OK)
+            {
+                this.Close();
+            }
+        }
+        /// <summary>
+        /// Aucun chemin spécifié
+        /// </summary>
+        private void InvalidPath()
+        {
+
+            DialogResult Result = MessageBox.Show("Veuillez saisir un chemin", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
+            
+        }
+
+
         private void TextBoxDescription_Click(object sender, EventArgs e)
         {
 
         }
-
+        /// <summary>
+        /// Parcours les dossier pour choisir un dossier d'export
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonBrowse_Click(object sender, EventArgs e)
         {
             var FolderPath = string.Empty;
@@ -56,47 +85,34 @@ namespace Hector
                 ExportFolderPath = this.FolderPath.Text;
             }
         }
-
+        /// <summary>
+        /// Exporte la base de données dans un fichier csv export.csv au chemin spécifié
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonExport_Click(object sender, EventArgs e)
         {
-            /*
-            List<Marque> Marques = DataBase.GetMarques("Hector.SQLite");
-            Console.WriteLine(Marques.Count);
-            List<Famille> Familles = DataBase.GetFamilles("Hector.SQLite");
-            Console.WriteLine(Familles.Count);
-            List<SousFamille> SousFamilles = DataBase.GetSousFamilles("Hector.SQLite");
-            Console.WriteLine(SousFamilles.Count);
-            List<Article> Articles = DataBase.GetArticles("Hector.SQLite");
-            Console.WriteLine(Articles.Count);
-            foreach (Article Article in Articles)
+            //pas specifié de chemin
+            if(ExportFolderPath == null)
             {
-                //On trouve la marque associée
-                Marque Marque = Marques.Find(x => x.RefMarque == Article.RefMarque);
-                string NomMarque = Marque.Nom;
-                
-                //On trouve la sousfamille associée
-                SousFamille SousFamille = SousFamilles.Find(x => x.RefSousFamille == Article.RefSousFamille);
-                string NomSousFamille = SousFamille.Nom;
-                
-                //On trouve la sousfamille associée
-                Famille Famille = Familles.Find(x => x.RefFamille == SousFamille.RefFamille);
-                string NomFamille = Famille.Nom;
-
-
-                Console.WriteLine("Article Desc : "+Article.Description+" Ref : " + Article.RefArticle + " Marque : " + NomMarque + " Famille : " + NomFamille + " Sous famille : " + NomSousFamille+ " Prix : " + Article.PrixHT);
-
+                InvalidPath();
+                return;
             }
-            */
+
             SQLiteCommand Command = new SQLiteCommand("Select Description, RefArticle, Marques.Nom, Familles.Nom, SousFamilles.Nom, PrixHT from Articles inner join Marques on Articles.RefMarque = Marques.RefMarque inner join SousFamilles on Articles.RefSousFamille = SousFamilles.RefSousFamille inner join Familles on SousFamilles.RefFamille = Familles.RefFamille", DataBase.Conn);
             SQLiteDataReader Reader = Command.ExecuteReader();
 
             
 
+            
             using (StreamWriter sw = File.CreateText(ExportFolderPath + "\\export.csv"))
             {
                 try
                 {
                     sw.WriteLine("Description; Ref; Marque; Famille; Sous - Famille; Prix H.T.");
+                    
+
+
 
                     while (Reader.Read())
                     {
@@ -109,6 +125,8 @@ namespace Hector
 
                         sw.WriteLine(Description + ";" + Ref + ";" + Marque + ";" + Famille + ";" + SousFamille + ";" + PrixHT);
                         Console.WriteLine(Description + ";" + Ref + ";" + Marque + ";" + Famille + ";" + SousFamille + ";" + PrixHT);
+
+                        
                     }
                     sw.Close();
                 }
@@ -117,6 +135,8 @@ namespace Hector
                     Console.WriteLine("Exception: " + er.Message);
                 }
             }
+
+            ShowExportResult();
         }
     }
 }

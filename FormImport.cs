@@ -58,6 +58,11 @@ namespace Hector
         /// <param name="e"></param>
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
+            if(ImportFilePath == null)
+            {
+                InvalidPath();
+                return;
+            }
             DataBase.ReadCsv(ImportFilePath, this.ProgressBar);
             ShowImportResult();
         }
@@ -68,6 +73,11 @@ namespace Hector
         /// <param name="e"></param>
         private void ButtonOverwrite_Click(object sender, EventArgs e)
         {
+            if (ImportFilePath == null)
+            {
+                InvalidPath();
+                return;
+            }
             DataBase.RemoveAll();
             DataBase.ReadCsv(ImportFilePath, this.ProgressBar);
             ShowImportResult();
@@ -86,7 +96,13 @@ namespace Hector
             }
         }
 
-
+        /// <summary>
+        /// Aucun chemin spécifié
+        /// </summary>
+        private void InvalidPath()
+        {
+            DialogResult Result = MessageBox.Show("Veuillez saisir un chemin", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
 
         private void ProgressBar_Click(object sender, EventArgs e)
         {

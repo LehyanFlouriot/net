@@ -29,21 +29,12 @@ namespace Hector
         /// </summary>
         private void InitializeComponent()
         {
-            this.ProgressBar = new System.Windows.Forms.ProgressBar();
             this.TextBoxDescription = new System.Windows.Forms.Label();
             this.FolderPath = new System.Windows.Forms.TextBox();
             this.ButtonBrowse = new System.Windows.Forms.Button();
             this.ButtonExport = new System.Windows.Forms.Button();
+            this.ProgressBar = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
-            // 
-            // ProgressBar
-            // 
-            this.ProgressBar.Location = new System.Drawing.Point(33, 142);
-            this.ProgressBar.Margin = new System.Windows.Forms.Padding(2);
-            this.ProgressBar.Name = "ProgressBar";
-            this.ProgressBar.Size = new System.Drawing.Size(516, 35);
-            this.ProgressBar.Step = 100;
-            this.ProgressBar.TabIndex = 9;
             // 
             // TextBoxDescription
             // 
@@ -90,6 +81,15 @@ namespace Hector
             this.ButtonExport.UseVisualStyleBackColor = true;
             this.ButtonExport.Click += new System.EventHandler(this.ButtonExport_Click);
             // 
+            // ProgressBar
+            // 
+            this.ProgressBar.Location = new System.Drawing.Point(33, 142);
+            this.ProgressBar.Margin = new System.Windows.Forms.Padding(2);
+            this.ProgressBar.Name = "ProgressBar";
+            this.ProgressBar.Size = new System.Drawing.Size(516, 35);
+            this.ProgressBar.Step = 100;
+            this.ProgressBar.TabIndex = 9;
+            // 
             // FormExport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -112,11 +112,10 @@ namespace Hector
         }
 
         #endregion
-
-        private System.Windows.Forms.ProgressBar ProgressBar;
         private System.Windows.Forms.Label TextBoxDescription;
         private System.Windows.Forms.TextBox FolderPath;
         private System.Windows.Forms.Button ButtonBrowse;
         private System.Windows.Forms.Button ButtonExport;
+        private System.Windows.Forms.ProgressBar ProgressBar;
     }
 }
