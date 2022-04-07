@@ -80,7 +80,7 @@ namespace Hector
 
             string Text = e.Node.Text;
             string Name = e.Node.Name;
-            if (Text== "Tous les articles")
+            if (Text == "Tous les articles")
             {
                 this.listView1.Columns.Add("Description", -2, HorizontalAlignment.Left);
                 this.listView1.Columns.Add("Familles", -2, HorizontalAlignment.Left);
@@ -108,19 +108,24 @@ namespace Hector
             else if (Text == "Familles")
             {
 
-            }else if(Text == "Marques")
-            {
-
-            }else if (Name.Contains("Famille"))
-            {
-
-            }else if (Name.Contains("SousFamille"))
-            {
-
-            }else if (Name.Contains("Marque"))
+            }
+            else if (Text == "Marques")
             {
 
             }
+            else if (Name.Contains("Famille"))
+            {
+
+            }
+            else if (Name.Contains("SousFamille"))
+            {
+
+            }
+            else if (Name.Contains("Marque"))
+            {
+
+            }
+        }
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
 
