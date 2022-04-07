@@ -16,15 +16,17 @@ namespace Hector
         public FormMain()
         {
             InitializeComponent();
+            string path = "Hector.SQLite";
             try
             {
-                string path = "Hector.SQLite";
+                
                 DataBase.CreateConnection(path);
             }
             catch(Exception ex)
             {
 
             }
+            DataBase.InitializeList(this.treeView1);
             
         }
 
@@ -50,6 +52,16 @@ namespace Hector
         {
             FormExport FormExport = new FormExport();
             FormExport.ShowDialog();
+        }
+
+        private void treeView1_AfterSelect(object sender, TreeViewEventArgs e)
+        {
+
+        }
+
+        private void actualiserToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DataBase.InitializeList(this.treeView1);
         }
     }
 }

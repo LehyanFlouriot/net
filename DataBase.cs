@@ -18,20 +18,82 @@ namespace Hector
      
 
         
+        public static List<SousFamille> GetSousFamillesOf(int FamilleRefFamille)
+        {
+            List<SousFamille> SousFamilles = new List<SousFamille>();
+            SQLiteCommand SelectCommand = new SQLiteCommand("SELECT RefSousFamille,RefFamille,Nom from SousFamilles where RefFamille = " + FamilleRefFamille, DataBase.Conn);
+
+            SQLiteDataReader Reader = SelectCommand.ExecuteReader();
+
+            
+            while (Reader.Read())
+            {
+                int RefSousFamille = Reader.GetInt32(0);
+
+                int RefFamille = Reader.GetInt32(1);
+
+                string Nom = Reader.GetString(2);
+
+                //Creation de l'objet sous famille
+                SousFamille NewSousFamille = new SousFamille(RefSousFamille, RefFamille, Nom);
+                //ajout au tableau de sous familles
+                SousFamilles.Add(NewSousFamille);
+            }
+
+            return SousFamilles;
+        }
+
+        internal static void InitializeList(TreeView TreeView1)
+        {
+            TreeNode MainNode = new TreeNode();
+            MainNode.Name = "AllArticles";
+            MainNode.Text = "Tous les articles";
+            TreeView1.Nodes.Add(MainNode);
+            TreeNode FamilleNode = new TreeNode();
+            FamilleNode.Name = "Familles";
+            FamilleNode.Text = "Familles";
+            TreeView1.Nodes.Add(FamilleNode);
+            TreeNode MarquesNode = new TreeNode();
+            MarquesNode.Name = "Marques";
+            MarquesNode.Text = "Marques";
+            TreeView1.Nodes.Add(MarquesNode);
+            
+            List<Marque> Marques = DataBase.GetMarques();
+            List<Famille> Familles = DataBase.GetFamilles();
+            for (int i = 0; i < Familles.Count; i++)
+            {
+                TreeNode FamilleXNode = new TreeNode();
+                FamilleXNode.Name = "Famille" + i;
+                FamilleXNode.Text = Familles[i].Nom;
+                FamilleNode.Nodes.Add(FamilleXNode);
+                List<SousFamille> SousFamilles = DataBase.GetSousFamillesOf(Familles[i].RefFamille);
+                for (int j = 0; j < SousFamilles.Count; j++)
+                {
+                    TreeNode SousFamilleXNode = new TreeNode();
+                    SousFamilleXNode.Name = "SousFamille" + j;
+                    SousFamilleXNode.Text = SousFamilles[j].Nom;
+                    FamilleXNode.Nodes.Add(SousFamilleXNode);
+                }
+            }
+            for (int i = 0; i < Marques.Count; i++)
+            {
+                TreeNode MarqueXNode = new TreeNode();
+                MarqueXNode.Name = "Marque" + i;
+                MarqueXNode.Text = Marques[i].Nom;
+                MarquesNode.Nodes.Add(MarqueXNode);
+            }
+        }
 
         /// <summary>
         /// Retourne la liste des SousFamilles de la base de donnée
         /// </summary>
         /// <param name="DatabasePath"></param>
         /// <returns></returns>
-        public static List<SousFamille> GetSousFamilles(string DatabasePath)
+        public static List<SousFamille> GetSousFamilles()
         {
             List<SousFamille> SousFamilles = new List<SousFamille>();
 
-            using (SQLiteConnection DataBase = new SQLiteConnection("Data Source =" + DatabasePath))
-            {
-                DataBase.Open();
-                SQLiteCommand SelectCommand = new SQLiteCommand("SELECT * from SousFamilles", DataBase);
+                SQLiteCommand SelectCommand = new SQLiteCommand("SELECT * from SousFamilles", Conn);
 
                 SQLiteDataReader Reader = SelectCommand.ExecuteReader();
 
@@ -63,8 +125,6 @@ namespace Hector
                     //ajout au tableau de marques
                     SousFamilles.Add(NewSousFamille);
                 }
-                DataBase.Close();
-            }
 
             return SousFamilles;
         }
@@ -87,14 +147,11 @@ namespace Hector
         /// </summary>
         /// <param name="DatabasePath"></param>
         /// <returns></returns>
-        public static List<Famille> GetFamilles(string DatabasePath)
+        public static List<Famille> GetFamilles()
         {
             List<Famille> Familles = new List<Famille>();
 
-            using (SQLiteConnection DataBase = new SQLiteConnection("Data Source =" + DatabasePath))
-            {
-                DataBase.Open();
-                SQLiteCommand SelectCommand = new SQLiteCommand("SELECT * from Familles", DataBase);
+                SQLiteCommand SelectCommand = new SQLiteCommand("SELECT * from Familles", Conn);
 
                 SQLiteDataReader Reader = SelectCommand.ExecuteReader();
 
@@ -124,8 +181,6 @@ namespace Hector
                     //ajout au tableau de marques
                     Familles.Add(NewFamille);
                 }
-                DataBase.Close();
-            }
 
             return Familles;
         }
@@ -134,14 +189,11 @@ namespace Hector
         /// </summary>
         /// <param name="DatabasePath"></param>
         /// <returns></returns>
-        public static List<Article> GetArticles(string DatabasePath)
+        public static List<Article> GetArticles()
         {
             List<Article> Articles = new List<Article>();
 
-            using (SQLiteConnection DataBase = new SQLiteConnection("Data Source =" + DatabasePath))
-            {
-                DataBase.Open();
-                SQLiteCommand SelectCommand = new SQLiteCommand("SELECT * from Articles", DataBase);
+                SQLiteCommand SelectCommand = new SQLiteCommand("SELECT * from Articles", Conn);
 
                 SQLiteDataReader Reader = SelectCommand.ExecuteReader();
 
@@ -175,8 +227,6 @@ namespace Hector
                     //ajout au tableau de marques
                     Articles.Add(NewArticle);
                 }
-                DataBase.Close();
-            }
 
             return Articles;
         }
@@ -187,15 +237,11 @@ namespace Hector
         /// </summary>
         /// <param name="DatabasePath"></param>
         /// <returns></returns>
-        public static List<Marque> GetMarques(string DatabasePath)
+        public static List<Marque> GetMarques()
         {
             List<Marque> Marques = new List<Marque>();
 
-            using (SQLiteConnection DataBase = new SQLiteConnection("Data Source =" + DatabasePath))
-            {
-                
-                DataBase.Open();
-                SQLiteCommand SelectCommand = new SQLiteCommand("SELECT * from Marques", DataBase);
+                SQLiteCommand SelectCommand = new SQLiteCommand("SELECT * from Marques", Conn);
 
                 SQLiteDataReader Reader = SelectCommand.ExecuteReader();
 
@@ -225,8 +271,7 @@ namespace Hector
                     //ajout au tableau de marques
                     Marques.Add(NewMarque);
                 }
-                DataBase.Close();
-            }
+            
 
             return Marques;
         }
