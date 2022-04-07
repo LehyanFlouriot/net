@@ -275,34 +275,6 @@ namespace Hector
 
             return Marques;
         }
-        /*
-        public static List<String> GetData(string DatabasePath)
-        {
-            List<String> entries = new List<string>();
-
-            string dbpath = Path.Combine(DatabasePath);
-            using (SqliteConnection db =
-               new SqliteConnection($"Filename={dbpath}"))
-            {
-                db.Open();
-
-                SqliteCommand selectCommand = new SqliteCommand
-                    ("SELECT Text_Entry from MyTable", db);
-
-                SqliteDataReader query = selectCommand.ExecuteReader();
-
-                while (query.Read())
-                {
-                    entries.Add(query.GetString(0));
-                }
-
-                db.Close();
-            }
-
-            return entries;
-        }
-        */
-
 
 
         /// <summary>
@@ -381,6 +353,7 @@ namespace Hector
                 Console.WriteLine(e.Message);
                 
             }
+            
         }
 
 

@@ -59,6 +59,7 @@ namespace Hector
         private void ButtonAdd_Click(object sender, EventArgs e)
         {
             DataBase.ReadCsv(ImportFilePath, this.ProgressBar);
+            ShowImportResult();
         }
         /// <summary>
         /// Clic sur le boutton ecraser, ecrase la base de donnée actuelle et la remplie avec les nouvelles données
@@ -69,30 +70,23 @@ namespace Hector
         {
             DataBase.RemoveAll();
             DataBase.ReadCsv(ImportFilePath, this.ProgressBar);
+            ShowImportResult();
         }
         /// <summary>
         /// Creer une message box qui affiche les resultats de l'import
         /// </summary>
         private void ShowImportResult()
         {
-
-        }
-
-
-        /// <summary>
-        /// Insere les données du fichier csv selectionné dans la base de donnée (Hector)
-        /// </summary>
-        /// <param name="conn"></param>
-        static void InsertData(SQLiteConnection conn)
-        {
-            SQLiteCommand SqliteCmd;
-            /*
-            SqliteCmd = conn.CreateCommand();
             
-            SqliteCmd.CommandText = "INSERT INTO SampleTable1(Col1, Col2) VALUES('Test3 Text3 ', 3); ";
-            SqliteCmd.ExecuteNonQuery();
-            */
+            DialogResult Result = MessageBox.Show("Données ajoutées avec succès", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //L'utilisateur a dit ok
+            if(Result == DialogResult.OK)
+            {
+                this.Close();
+            }
         }
+
+
 
         private void ProgressBar_Click(object sender, EventArgs e)
         {

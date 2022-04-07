@@ -58,6 +58,7 @@ namespace Hector
             CurrentArticle.Description = TextBoxDescription.Text;
             CurrentArticle.RefMarque = Marques[ComboBoxMarque.SelectedIndex].RefMarque;
             CurrentArticle.RefSousFamille = Marques[ComboBoxSousFamille.SelectedIndex].RefMarque;
+
             //GERER LE CAS OU IL n'Y A PAS DE SOUS FAMILLE
         }
 
