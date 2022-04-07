@@ -46,10 +46,7 @@ namespace Hector
         /// </summary>
         private void InvalidPath()
         {
-
             DialogResult Result = MessageBox.Show("Veuillez saisir un chemin", "Attention", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            
-            
         }
 
 

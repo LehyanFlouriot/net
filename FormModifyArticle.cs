@@ -14,31 +14,60 @@ namespace Hector
     {
         
         private Article CurrentArticle = null;
-        //Voir si on met en static dans le formMain
 
-        private List<Marque> Marques;
-        //private List<Famille> Familles; a voir
-        private List<SousFamille> SousFamilles;
-        
+        List<Marque> LocalMarques;
+        List<Famille> LocalFamilles;
+        List<SousFamille> LocalSousFamilles;
+
+
+
 
         public FormModifyArticle()
         {
             InitializeComponent();
         }
-
-        public FormModifyArticle(Article Article, List<Marque> Marques, List<SousFamille> SousFamilles)
+        /// <summary>
+        /// Constructeur pour un article en particulier
+        /// </summary>
+        /// <param name="Article"></param>
+        /// <param name="Marques"></param>
+        /// <param name="SousFamilles"></param>
+        public FormModifyArticle(Article Article, List<Marque> Marques, List<Famille> Familles, List<SousFamille> SousFamilles)
         {
             InitializeComponent();
 
             TextBoxDescription.Text = Article.Description;
-            ComboBoxMarque.Items.AddRange(Marques.ToArray());
-            
-            ComboBoxSousFamille.Items.AddRange(SousFamilles.ToArray());
+
+            //Marque
+            foreach(Marque Marque in Marques)
+            {
+                ComboBoxMarque.Items.Add(Marque.Nom);
+            }
+            ComboBoxMarque.Text = Marques.Find(x => x.RefMarque == Article.RefMarque).Nom;
+
+            //Famille
+            foreach(Famille Famille in Familles)
+            {
+                ComboBoxFamille.Items.Add(Famille.Nom);
+            }
+            int RefFamille = SousFamilles.Find(x => x.RefSousFamille == Article.RefSousFamille).RefFamille;
+            Famille CurrentFamille = Familles.Find(x => x.RefFamille == RefFamille);
+            ComboBoxFamille.Text = CurrentFamille.Nom;
+
+            //SousFamille
+            List<SousFamille> possibleSousFamilles = SousFamilles.FindAll(x => x.RefFamille == CurrentFamille.RefFamille);
+            foreach (SousFamille SousFamille in possibleSousFamilles)
+            {
+                ComboBoxSousFamille.Items.Add(SousFamille.Nom);
+            }
+            ComboBoxSousFamille.Text = SousFamilles.Find(x => x.RefSousFamille == Article.RefSousFamille).Nom;
+
 
             CurrentArticle = Article;
-            this.Marques = Marques;
-            
-            this.SousFamilles = SousFamilles;
+            LocalMarques = Marques;
+            LocalFamilles = Familles;
+            LocalSousFamilles = SousFamilles;
+
         }
         
 
@@ -46,20 +75,41 @@ namespace Hector
         {
 
         }
-
+        /// <summary>
+        /// On clic sur le bouton annuler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+        /// <summary>
+        /// Check if each box is ok
+        /// </summary>
+        /// <returns></returns>
+        private bool CheckBoxes()
+        {
+            if (TextBoxDescription.Text.Length == 0)
+                return false;
+            return true;
+        }
 
+        /// <summary>
+        /// On clic sur le bouton appliquer, on applique les changement à la base
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonApply_Click(object sender, EventArgs e)
         {
-            //Changer les valeurs de l'article
-            CurrentArticle.Description = TextBoxDescription.Text;
-            CurrentArticle.RefMarque = Marques[ComboBoxMarque.SelectedIndex].RefMarque;
-            CurrentArticle.RefSousFamille = Marques[ComboBoxSousFamille.SelectedIndex].RefMarque;
+            if (CheckBoxes() == true)
+            {
+                //Changer les valeurs de l'article
+                CurrentArticle.Description = TextBoxDescription.Text;
 
-            //GERER LE CAS OU IL n'Y A PAS DE SOUS FAMILLE
+            }
+
+            //GERER LE CAS OU IL n'Y A PAS DE SOUS FAMILLE et le cas ou si on gere les familles lors du changement de la famille, on change les sous familles associées
         }
 
         private void LabelDescription_Click(object sender, EventArgs e)
@@ -76,10 +126,24 @@ namespace Hector
         {
 
         }
-
-        private void ComboBoxSousFamille_SelectedIndexChanged(object sender, EventArgs e)
+        /// <summary>
+        /// On a choisi une nouvelle famille
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ComboBoxFamille_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //On actualise les valeurs possible de la combobox sous famille
+            string CurrentNomFamille = ComboBoxFamille.Text;
+            int CurrentRefFamille = LocalFamilles.Find(x => x.Nom == CurrentNomFamille).RefFamille;
 
+
+            List<SousFamille> possibleSousFamilles = LocalSousFamilles.FindAll(x => x.RefFamille == CurrentRefFamille);
+            foreach (SousFamille SousFamille in possibleSousFamilles)
+            {
+                ComboBoxSousFamille.Items.Add(SousFamille.Nom);
+            }
+            ComboBoxSousFamille.SelectedIndex = 0;
         }
     }
 }
