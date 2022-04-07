@@ -93,7 +93,7 @@ namespace Hector
         {
             List<SousFamille> SousFamilles = new List<SousFamille>();
 
-                SQLiteCommand SelectCommand = new SQLiteCommand("SELECT * from SousFamilles", Conn);
+                SQLiteCommand SelectCommand = new SQLiteCommand("SELECT RefSousFamille,RefFamille,Nom from SousFamilles", Conn);
 
                 SQLiteDataReader Reader = SelectCommand.ExecuteReader();
 
@@ -151,7 +151,7 @@ namespace Hector
         {
             List<Famille> Familles = new List<Famille>();
 
-                SQLiteCommand SelectCommand = new SQLiteCommand("SELECT * from Familles", Conn);
+                SQLiteCommand SelectCommand = new SQLiteCommand("SELECT RefFamille,Nom from Familles", Conn);
 
                 SQLiteDataReader Reader = SelectCommand.ExecuteReader();
 
@@ -193,7 +193,7 @@ namespace Hector
         {
             List<Article> Articles = new List<Article>();
 
-                SQLiteCommand SelectCommand = new SQLiteCommand("SELECT * from Articles", Conn);
+                SQLiteCommand SelectCommand = new SQLiteCommand("SELECT RefArticle,Description,RefSousFamille,RefMarque,PrixHT,Quantite from Articles", Conn);
 
                 SQLiteDataReader Reader = SelectCommand.ExecuteReader();
 
@@ -241,7 +241,7 @@ namespace Hector
         {
             List<Marque> Marques = new List<Marque>();
 
-                SQLiteCommand SelectCommand = new SQLiteCommand("SELECT * from Marques", Conn);
+                SQLiteCommand SelectCommand = new SQLiteCommand("SELECT RefMarque,Nom from Marques", Conn);
 
                 SQLiteDataReader Reader = SelectCommand.ExecuteReader();
 
