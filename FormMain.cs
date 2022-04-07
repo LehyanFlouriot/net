@@ -130,5 +130,10 @@ namespace Hector
         {
 
         }
+
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }
