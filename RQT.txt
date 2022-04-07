@@ -1,0 +1,43 @@
+Select RefFamille from familles where nom like 'Yes';
+
+si pas de résultat -> 
+
+	INSERT INTO familles
+	    (Nom)
+	VALUES
+	    ('Famille');
+
+RECUPERER L'ID TOUJOURS
+
+
+
+Select RefSousFamille from SousFamilles where nom like 'Yes';
+
+si pas de résultat ->
+
+	INSERT INTO sousfamilles(RefFamille,Nom) values('RefFamille','Sous-Famille')
+
+
+RECUPERER L'ID TOUJOURS
+
+
+Select RefMarque from Marques where nom like 'Yes';
+
+si pas de résultat ->
+
+	INSERT INTO Marques(Nom) values('Yes')
+
+RECUPERER L'ID TOUJOURS
+
+
+INSERT INTO Articles(RefArticle,Description,RefSousFamille,RefMarque,PrixHT,Quantite) values('Ref','Description',1,1,1,1)
+ON CONFLICT(RefArticle) DO UPDATE SET Quantite=Quantite+1;
+
+
+Select Description,RefArticle,Marques.Nom,Familles.Nom,SousFamilles.Nom,PrixHT
+from Articles inner join Marques on Articles.RefMarque = Marques.RefMarque
+inner join SousFamilles on Articles.RefSousFamille = SousFamilles.RefSousFamille
+inner join Familles on SousFamilles.RefFamille = Familles.RefFamille
+
+
+select last_insert_rowid();
