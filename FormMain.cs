@@ -200,5 +200,16 @@ namespace Hector
             //Console.WriteLine("Double clic sur : " + selectedItem[0]);
             
         }
+
+        protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
+        {
+            bool Handled = false;
+            if(keyData == Keys.F5)
+            {
+                DataBase.InitializeList(this.treeView1);
+                Handled = true;
+            }
+            return Handled;
+        }
     }
 }
