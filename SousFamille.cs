@@ -21,7 +21,12 @@ namespace Hector
             
             Nom = nom;
         }
-        
+
+        public SousFamille(int RefFamille, string nom)
+        {
+            this.RefFamille = RefFamille;
+            Nom = nom;
+        }
 
         internal static int Existe(string NomSousFamille)
         {

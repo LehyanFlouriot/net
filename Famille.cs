@@ -18,6 +18,10 @@ namespace Hector
             this.RefFamille = RefFamille;
             this.Nom = Nom;
         }
+        public Famille(string Nom)
+        {
+            this.Nom = Nom;
+        }
 
         public static Famille InsererFamille(string Nom)
         {

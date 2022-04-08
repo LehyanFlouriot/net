@@ -69,11 +69,61 @@ namespace Hector
             }
             ComboBoxSousFamille.Text = SousFamilles.Find(x => x.RefSousFamille == Article.RefSousFamille).Nom;
 
-
+            
             
 
         }
-        
+
+        public FormModifyArticle(Article Article, List<Marque> Marques, List<Famille> Familles, List<SousFamille> SousFamilles, bool add)
+        {
+            InitializeComponent();
+
+            CurrentArticle = Article;
+            
+            LocalMarques = Marques;
+            LocalFamilles = Familles;
+            LocalSousFamilles = SousFamilles;
+
+
+            TextBoxDescription.Text = CurrentArticle.Description;
+            TextBoxPrix.Text = CurrentArticle.PrixHT.ToString();
+
+            //Marque
+            foreach (Marque Marque in Marques)
+            {
+                ComboBoxMarque.Items.Add(Marque.Nom);
+            }
+            string MarqueNom = ComboBoxMarque.Items[0].ToString();
+            CurrentArticle.RefMarque = Marques.Find(x => x.Nom == MarqueNom).RefMarque;
+            ComboBoxMarque.Text = Marques.Find(x => x.RefMarque == CurrentArticle.RefMarque).Nom;
+
+            //Famille
+            foreach (Famille Famille in Familles)
+            {
+                ComboBoxFamille.Items.Add(Famille.Nom);
+            }
+            string TempFamilleNom = ComboBoxFamille.Items[0].ToString();
+            int TempRefFamille = Familles.Find(x => x.Nom == TempFamilleNom).RefFamille;
+            CurrentArticle.RefSousFamille = SousFamilles.Find(x => x.RefFamille == TempRefFamille).RefFamille;
+
+            int RefFamille = SousFamilles.Find(x => x.RefSousFamille == CurrentArticle.RefSousFamille).RefFamille;
+            Famille CurrentFamille = Familles.Find(x => x.RefFamille == RefFamille);
+            ComboBoxFamille.Text = CurrentFamille.Nom;
+
+            //SousFamille
+            List<SousFamille> possibleSousFamilles = SousFamilles.FindAll(x => x.RefFamille == CurrentFamille.RefFamille);
+            foreach (SousFamille SousFamille in possibleSousFamilles)
+            {
+                ComboBoxSousFamille.Items.Add(SousFamille.Nom);
+            }
+            ComboBoxSousFamille.Text = SousFamilles.Find(x => x.RefSousFamille == CurrentArticle.RefSousFamille).Nom;
+
+
+
+
+
+        }
+
 
         private void ComboBoxMarque_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -108,6 +158,7 @@ namespace Hector
         {
             if (CheckBoxes() == true)
             {
+                
                 //Changer les valeurs de l'article
                 CurrentArticle.Description = TextBoxDescription.Text;
 
@@ -125,9 +176,9 @@ namespace Hector
                     DialogResult MsgBox = MessageBox.Show("Mettez un prix entier ou à VIRGULE");
                     return;
                 }
-
             }
             //requete sql pour appliquer le changement
+            
             DataBase.ModifyArticle(CurrentArticle.RefArticle, CurrentArticle.Description, CurrentArticle.RefSousFamille, CurrentArticle.RefMarque, CurrentArticle.PrixHT);
             ShowResult();
         }
