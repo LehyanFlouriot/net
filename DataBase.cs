@@ -25,7 +25,7 @@ namespace Hector
         {
             //requete sql et remplir les champs du coup
 
-            SQLiteCommand SelectCommand = new SQLiteCommand("SELECT RefArticle,Description,RefSousFamille,RefMarque,PrixHT,Quantite from Articles where RefArticle = "+Ref, Conn);
+            SQLiteCommand SelectCommand = new SQLiteCommand("SELECT RefArticle,Description,RefSousFamille,RefMarque,PrixHT,Quantite from Articles where RefArticle = '"+Ref+"'", Conn);
 
             SQLiteDataReader Reader = SelectCommand.ExecuteReader();
 
