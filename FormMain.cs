@@ -25,7 +25,7 @@ namespace Hector
             }
             catch(Exception ex)
             {
-
+                Console.WriteLine(ex.StackTrace);
             }
             DataBase.InitializeList(this.treeView1);
             ColumnSorter = new ListViewColumnSorter();

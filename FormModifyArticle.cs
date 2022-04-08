@@ -125,7 +125,7 @@ namespace Hector
 
 
 
-
+            
         }
 
 
@@ -174,6 +174,7 @@ namespace Hector
                 }
                 catch(Exception ex)
                 {
+                    Console.WriteLine(ex.StackTrace);
                     DialogResult MsgBox = MessageBox.Show("Mettez un prix entier ou à VIRGULE");
                     return;
                 }
