@@ -16,6 +16,31 @@ namespace Hector
         private static List<Marque> Marques;
         private static List<Article> Articles;
      
+
+
+        public static void SupprimerArticle(string Ref)
+        {
+            var Command = new SQLiteCommand("DELETE From Articles where RefArticle = '"+Ref+"'", DataBase.Conn);
+            Command.ExecuteNonQuery();
+        }
+
+        public static void SupprimerMarque(int RefMarque)
+        {
+            var Command = new SQLiteCommand("DELETE From Marques where RefMarque = '" + RefMarque + "'", DataBase.Conn);
+            Command.ExecuteNonQuery();
+        }
+
+        public static void SupprimerSousFamille(int RefSousFamille)
+        {
+            var Command = new SQLiteCommand("DELETE From SousFamilles where RefSousFamille = '" + RefSousFamille + "'", DataBase.Conn);
+            Command.ExecuteNonQuery();
+        }
+
+        public static void SupprimerFamille(int RefFamille)
+        {
+            var Command = new SQLiteCommand("DELETE From Familles where RefFamille = '" + RefFamille + "'", DataBase.Conn);
+            Command.ExecuteNonQuery();
+        }
         /// <summary>
         /// Return un objet article depuis une ref
         /// </summary>
