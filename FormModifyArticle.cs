@@ -41,9 +41,9 @@ namespace Hector
             LocalFamilles = Familles;
             LocalSousFamilles = SousFamilles;
 
-
-            TextBoxDescription.Text = Article.Description;
-            TextBoxPrix.Text = Article.PrixHT.ToString();
+            TextBoxRef.Text = CurrentArticle.RefArticle;
+            TextBoxDescription.Text = CurrentArticle.Description;
+            TextBoxPrix.Text = CurrentArticle.PrixHT.ToString();
 
             //Marque
             foreach(Marque Marque in Marques)
@@ -77,6 +77,10 @@ namespace Hector
         public FormModifyArticle(Article Article, List<Marque> Marques, List<Famille> Familles, List<SousFamille> SousFamilles, bool add)
         {
             InitializeComponent();
+
+            TextBoxRef.Enabled = true;
+            LabelRef.Enabled = true;
+
 
             CurrentArticle = Article;
             
@@ -144,7 +148,7 @@ namespace Hector
         /// <returns></returns>
         private bool CheckBoxes()
         {
-            if (TextBoxDescription.Text.Length <= 0 && TextBoxPrix.Text.Length <= 0)
+            if (TextBoxDescription.Text.Length <= 0 && TextBoxPrix.Text.Length <= 0 && TextBoxRef.Text.Length <= 0)
                 return false;
             return true;
         }
@@ -161,11 +165,8 @@ namespace Hector
                 
                 //Changer les valeurs de l'article
                 CurrentArticle.Description = TextBoxDescription.Text;
-
-
-
                 CurrentArticle.RefMarque = LocalMarques.Find(x => x.Nom == ComboBoxMarque.Text).RefMarque;
-                
+                CurrentArticle.RefArticle = TextBoxRef.Text;
                 CurrentArticle.RefSousFamille = LocalSousFamilles.Find(x => x.Nom == ComboBoxSousFamille.Text).RefSousFamille;
                 //Console.WriteLine(ComboBoxMarque.Text);
                 try{
@@ -178,6 +179,7 @@ namespace Hector
                     return;
                 }
             }
+            
             //requete sql pour appliquer le changement
             if (Article.Existe(CurrentArticle.RefArticle) != -1)
             {
@@ -185,6 +187,7 @@ namespace Hector
             }
             else
             {
+                
                 Article.InsererArticle(CurrentArticle.RefArticle, CurrentArticle.Description, CurrentArticle.RefSousFamille, CurrentArticle.RefMarque, CurrentArticle.PrixHT, 1);
             }
                 ShowResult();
@@ -242,6 +245,14 @@ namespace Hector
             ComboBoxSousFamille.SelectedIndex = 0;
         }
 
+        private void label1_Click(object sender, EventArgs e)
+        {
 
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
