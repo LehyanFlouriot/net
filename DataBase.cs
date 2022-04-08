@@ -364,7 +364,7 @@ namespace Hector
                 // Create an instance of StreamReader to read from a file.
                 // The using statement also closes the StreamReader.
                 
-                using (StreamReader Sr = new StreamReader(FilePath))
+                using (StreamReader Sr = new StreamReader(FilePath, Encoding.Default))
                 {
                     //The number of lines in the file
                     int LineCount = File.ReadLines(FilePath).Count() - 1;

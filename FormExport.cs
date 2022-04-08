@@ -106,6 +106,7 @@ namespace Hector
             {
                 try
                 {
+
                     sw.WriteLine("Description; Ref; Marque; Famille; Sous - Famille; Prix H.T.");
                     
 
