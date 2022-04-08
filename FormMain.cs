@@ -87,7 +87,7 @@ namespace Hector
                 this.listView1.Columns.Add("Sous-Familles", -2, HorizontalAlignment.Left);
                 this.listView1.Columns.Add("Marques", -2, HorizontalAlignment.Left);
                 this.listView1.Columns.Add("Quantite", -2, HorizontalAlignment.Left);
-                SQLiteCommand Command = new SQLiteCommand("Select Description, Marques.Nom, Familles.Nom, SousFamilles.Nom, Quantite from Articles inner join Marques on Articles.RefMarque = Marques.RefMarque inner join SousFamilles on Articles.RefSousFamille = SousFamilles.RefSousFamille inner join Familles on SousFamilles.RefFamille = Familles.RefFamille", DataBase.Conn);
+                SQLiteCommand Command = new SQLiteCommand("Select Description, Marques.Nom, Familles.Nom, SousFamilles.Nom, Quantite, RefArticle from Articles inner join Marques on Articles.RefMarque = Marques.RefMarque inner join SousFamilles on Articles.RefSousFamille = SousFamilles.RefSousFamille inner join Familles on SousFamilles.RefFamille = Familles.RefFamille", DataBase.Conn);
                 SQLiteDataReader Reader = Command.ExecuteReader();
                 while (Reader.Read())
                 {
@@ -96,11 +96,13 @@ namespace Hector
                     string Famille = Reader.GetString(2);
                     string SousFamille = Reader.GetString(3);
                     int Quantite = Reader.GetInt32(4);
+                    string RefArticle = Reader.GetString(5);
                     ListViewItem Item = new ListViewItem(Description);
                     Item.SubItems.Add(Famille);
                     Item.SubItems.Add(SousFamille);
                     Item.SubItems.Add(Marque);
                     Item.SubItems.Add(Quantite.ToString());
+                    Item.Tag = RefArticle;
                     this.listView1.Items.Add(Item);
                 }
 
@@ -112,7 +114,9 @@ namespace Hector
                 foreach(Famille Famille in Familles)
                 {
                     ListViewItem Item = new ListViewItem(Famille.Nom);
+                    Item.Tag = Famille;
                     this.listView1.Items.Add(Item);
+                    
                 }
             }
             else if (Text == "Marques")
@@ -122,6 +126,7 @@ namespace Hector
                 foreach (Marque Marque in Marques)
                 {
                     ListViewItem Item = new ListViewItem(Marque.Nom);
+                    Item.Tag = Marque;
                     this.listView1.Items.Add(Item);
                 }
             }
@@ -133,6 +138,7 @@ namespace Hector
                 foreach (SousFamille SousFamille in SousFamilles)
                 {
                     ListViewItem Item = new ListViewItem(SousFamille.Nom);
+                    Item.Tag = SousFamille;
                     this.listView1.Items.Add(Item);
                 }
             }
@@ -144,7 +150,7 @@ namespace Hector
                 this.listView1.Columns.Add("Sous-Familles", -2, HorizontalAlignment.Left);
                 this.listView1.Columns.Add("Marques", -2, HorizontalAlignment.Left);
                 this.listView1.Columns.Add("Quantite", -2, HorizontalAlignment.Left);
-                SQLiteCommand Command = new SQLiteCommand("Select Description, Marques.Nom, Familles.Nom, SousFamilles.Nom, Quantite from Articles inner join Marques on Articles.RefMarque = Marques.RefMarque inner join SousFamilles on Articles.RefSousFamille = SousFamilles.RefSousFamille inner join Familles on SousFamilles.RefFamille = Familles.RefFamille where SousFamilles.RefSousFamille=" + Int32.Parse(RefSousFamille), DataBase.Conn);
+                SQLiteCommand Command = new SQLiteCommand("Select Description, Marques.Nom, Familles.Nom, SousFamilles.Nom, Quantite, RefArticle from Articles inner join Marques on Articles.RefMarque = Marques.RefMarque inner join SousFamilles on Articles.RefSousFamille = SousFamilles.RefSousFamille inner join Familles on SousFamilles.RefFamille = Familles.RefFamille where SousFamilles.RefSousFamille=" + Int32.Parse(RefSousFamille), DataBase.Conn);
                 SQLiteDataReader Reader = Command.ExecuteReader();
                 while (Reader.Read())
                 {
@@ -153,11 +159,13 @@ namespace Hector
                     string Famille = Reader.GetString(2);
                     string SousFamille = Reader.GetString(3);
                     int Quantite = Reader.GetInt32(4);
+                    string RefArticle = Reader.GetString(5);
                     ListViewItem Item = new ListViewItem(Description);
                     Item.SubItems.Add(Famille);
                     Item.SubItems.Add(SousFamille);
                     Item.SubItems.Add(Marque);
                     Item.SubItems.Add(Quantite.ToString());
+                    Item.Tag = RefArticle;
                     this.listView1.Items.Add(Item);
                 }
             }
@@ -169,7 +177,7 @@ namespace Hector
                 this.listView1.Columns.Add("Sous-Familles", -2, HorizontalAlignment.Left);
                 this.listView1.Columns.Add("Marques", -2, HorizontalAlignment.Left);
                 this.listView1.Columns.Add("Quantite", -2, HorizontalAlignment.Left);
-                SQLiteCommand Command = new SQLiteCommand("Select Description, Marques.Nom, Familles.Nom, SousFamilles.Nom, Quantite from Articles inner join Marques on Articles.RefMarque = Marques.RefMarque inner join SousFamilles on Articles.RefSousFamille = SousFamilles.RefSousFamille inner join Familles on SousFamilles.RefFamille = Familles.RefFamille where Marques.RefMarque=" + Int32.Parse(RefMarque), DataBase.Conn);
+                SQLiteCommand Command = new SQLiteCommand("Select Description, Marques.Nom, Familles.Nom, SousFamilles.Nom, Quantite, RefArticle from Articles inner join Marques on Articles.RefMarque = Marques.RefMarque inner join SousFamilles on Articles.RefSousFamille = SousFamilles.RefSousFamille inner join Familles on SousFamilles.RefFamille = Familles.RefFamille where Marques.RefMarque=" + Int32.Parse(RefMarque), DataBase.Conn);
                 SQLiteDataReader Reader = Command.ExecuteReader();
                 while (Reader.Read())
                 {
@@ -178,11 +186,13 @@ namespace Hector
                     string Famille = Reader.GetString(2);
                     string SousFamille = Reader.GetString(3);
                     int Quantite = Reader.GetInt32(4);
+                    string RefArticle = Reader.GetString(5);
                     ListViewItem Item = new ListViewItem(Description);
                     Item.SubItems.Add(Famille);
                     Item.SubItems.Add(SousFamille);
                     Item.SubItems.Add(Marque);
                     Item.SubItems.Add(Quantite.ToString());
+                    Item.Tag = RefArticle;
                     this.listView1.Items.Add(Item);
                 }
             }
