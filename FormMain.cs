@@ -258,12 +258,81 @@ namespace Hector
             }
         }
 
+        public void DeleteItem()
+        {
+            if (listView1.SelectedItems.Count > 0)
+            {
+                //il ya un item selectionné
+                if (EtatSelection == Etat.ARTICLE)
+                {
+                    DataBase.DeleteArticle(listView1.SelectedItems[0].Tag.ToString()); //le tag est la ref de l'article
+                    listView1.Items.Remove(listView1.SelectedItems[0]);
+                }
+                else
+                {
+                    List<Article> Articles = DataBase.GetArticles();
+                    if (EtatSelection == Etat.MARQUE)
+                    {
+                        Marque Marque = (Marque)listView1.SelectedItems[0].Tag;
+                        if (Articles.FindAll(x => x.RefMarque == Marque.RefMarque).Count <= 0)
+                        {
+                            DataBase.DeleteMarque(Marque.RefMarque);
+                            listView1.Items.Remove(listView1.SelectedItems[0]);
+                        }
+                    }
+                    else if (EtatSelection == Etat.MARQUE)
+                    {
+                        SousFamille SousFamille = (SousFamille)listView1.SelectedItems[0].Tag;
+                        if (Articles.FindAll(x => x.RefSousFamille == SousFamille.RefSousFamille).Count <= 0)
+                        {
+                            DataBase.DeleteSousFamille(SousFamille.RefSousFamille);
+                            listView1.Items.Remove(listView1.SelectedItems[0]);
+                        }
+                    }
+                    else if (EtatSelection == Etat.FAMILLE)
+                    {
+                        Famille Famille = (Famille)listView1.SelectedItems[0].Tag;
+
+                        List<SousFamille> SousFamilles = DataBase.GetSousFamilles();
+                        List<SousFamille> CaFaitBeaucoupDeSousFamilles = SousFamilles.FindAll(x => x.RefFamille == Famille.RefFamille);
+                        
+
+                        foreach(SousFamille SousFamille in CaFaitBeaucoupDeSousFamilles)
+                        {
+                            if(Articles.FindAll(x => x.RefSousFamille == SousFamille.RefSousFamille).Count > 0)
+                            {
+                                
+                                return;
+                            }
+                        }
+                        foreach (SousFamille SousFamille in CaFaitBeaucoupDeSousFamilles)
+                        {
+                            DataBase.DeleteSousFamille(SousFamille.RefSousFamille);
+                        }
+                        DataBase.DeleteFamille(Famille.RefFamille);
+                        listView1.Items.Remove(listView1.SelectedItems[0]);
+                        return;
+
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+            }
+        }
+
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)
         {
             bool Handled = false;
             if(keyData == Keys.F5)
             {
                 DataBase.InitializeList(this.treeView1);
+                Handled = true;
+            }
+            if (keyData == Keys.Delete)
+            {
+                DeleteItem();
                 Handled = true;
             }
             return Handled;
@@ -387,6 +456,11 @@ namespace Hector
                 ContextMenuStrip.Items[1].Enabled = true;
                 ContextMenuStrip.Items[2].Enabled = true;
             }
+        }
+
+        private void supprimerToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DeleteItem();
         }
     }
 }

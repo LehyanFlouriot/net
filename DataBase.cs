@@ -289,7 +289,7 @@ namespace Hector
                     string Description = Reader.GetString(1);
                     int RefSousFamille = Reader.GetInt32(2);
                     int RefMarque = Reader.GetInt32(3);
-                    float PrixHT = Reader.GetFloat(4);
+                    float PrixHT = float.Parse(Reader.GetString(4));
                     int Quantite = Reader.GetInt32(5);
 
                     //Creation de l'objet marque

@@ -174,6 +174,7 @@ namespace Hector
             this.supprimerToolStripMenuItem.Name = "supprimerToolStripMenuItem";
             this.supprimerToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.supprimerToolStripMenuItem.Text = "Supprimer";
+            this.supprimerToolStripMenuItem.Click += new System.EventHandler(this.supprimerToolStripMenuItem_Click);
             // 
             // contextMenuStrip1
             // 
