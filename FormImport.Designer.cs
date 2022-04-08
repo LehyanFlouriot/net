@@ -57,6 +57,7 @@ namespace Hector
             this.FilePath.Name = "FilePath";
             this.FilePath.Size = new System.Drawing.Size(396, 26);
             this.FilePath.TabIndex = 1;
+            this.FilePath.TabStop = false;
             this.FilePath.TextChanged += new System.EventHandler(this.FilePath_TextChanged);
             // 
             // ButtonAdd

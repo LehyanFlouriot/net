@@ -450,7 +450,7 @@ namespace Hector
             }
             catch (Exception ex)
             {
-
+                Console.WriteLine(ex.StackTrace);
             }
         }
     }
