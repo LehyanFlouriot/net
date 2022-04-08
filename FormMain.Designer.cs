@@ -55,6 +55,7 @@ namespace Hector
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
             this.menuStrip1.Size = new System.Drawing.Size(1241, 26);
             this.menuStrip1.TabIndex = 0;
+            this.menuStrip1.TabStop = true;
             this.menuStrip1.Text = "menuStrip1";
             this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
@@ -96,7 +97,7 @@ namespace Hector
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Padding = new System.Windows.Forms.Padding(0, 0, 9, 0);
             this.statusStrip1.Size = new System.Drawing.Size(1241, 22);
-            this.statusStrip1.TabIndex = 1;
+            this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // splitContainer1
@@ -119,6 +120,7 @@ namespace Hector
             this.splitContainer1.SplitterDistance = 407;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 2;
+            this.splitContainer1.TabStop = false;
             // 
             // treeView1
             // 
@@ -127,7 +129,7 @@ namespace Hector
             this.treeView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.treeView1.Name = "treeView1";
             this.treeView1.Size = new System.Drawing.Size(407, 492);
-            this.treeView1.TabIndex = 0;
+            this.treeView1.TabIndex = 1;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
             // 
@@ -139,7 +141,7 @@ namespace Hector
             this.listView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listView1.Name = "listView1";
             this.listView1.Size = new System.Drawing.Size(831, 492);
-            this.listView1.TabIndex = 0;
+            this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
             this.listView1.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listView1_ColumnClick);

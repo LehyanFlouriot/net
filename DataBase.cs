@@ -352,8 +352,9 @@ namespace Hector
         /// </summary>
         /// <param name="FilePath"></param>
         /// <returns></returns>
-        public static void ReadCsv(string FilePath, ProgressBar ProgressBar)
+        public static int ReadCsv(string FilePath, ProgressBar ProgressBar)
         {
+            int NbInsert = 0;
             try
             {
                 Familles = new List<Famille>();
@@ -362,6 +363,7 @@ namespace Hector
                 Articles = new List<Article>();
                 // Create an instance of StreamReader to read from a file.
                 // The using statement also closes the StreamReader.
+                
                 using (StreamReader Sr = new StreamReader(FilePath))
                 {
                     //The number of lines in the file
@@ -390,6 +392,7 @@ namespace Hector
                                 Famille NewFam = Famille.InsererFamille(NomFamille);
                                 Familles.Add(NewFam);
                                 RefFamille = NewFam.RefFamille;
+                                NbInsert++;
                             }
 
                             int RefSousFamille = SousFamille.Existe(NomSousFamille);
@@ -398,6 +401,7 @@ namespace Hector
                                 SousFamille NewSousFam = SousFamille.InsererSousFamille(RefFamille, NomSousFamille);
                                 SousFamilles.Add(NewSousFam);
                                 RefSousFamille = NewSousFam.RefSousFamille;
+                                NbInsert++;
                             }
 
                             int RefMarque = Marque.Existe(NomMarque);
@@ -406,16 +410,18 @@ namespace Hector
                                 Marque NewMarque = Marque.InsererMarque(NomMarque);
                                 Marques.Add(NewMarque);
                                 RefMarque = NewMarque.RefMarque;
+                                NbInsert++;
                             }
                             Article NewArticle = Article.InsererArticle(Ref, Description, RefSousFamille, RefMarque, Prix, 1);
                             Articles.Add(NewArticle);
-                         
+                            NbInsert++;
 
                         }
                         Iterator++;
                         ProgressBar.Value = ((Iterator-1) / LineCount) * ProgressBar.Maximum; // Fill the progresBar
                     }
                 }
+                
             }
             catch (Exception e)
             {
@@ -424,7 +430,7 @@ namespace Hector
                 Console.WriteLine(e.Message);
                 
             }
-            
+            return NbInsert;
         }
 
 

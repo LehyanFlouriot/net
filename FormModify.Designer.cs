@@ -38,48 +38,53 @@ namespace Hector
             // LabelDescription
             // 
             this.LabelDescription.AutoSize = true;
-            this.LabelDescription.Location = new System.Drawing.Point(34, 29);
+            this.LabelDescription.Location = new System.Drawing.Point(45, 36);
+            this.LabelDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.LabelDescription.Name = "LabelDescription";
-            this.LabelDescription.Size = new System.Drawing.Size(60, 13);
+            this.LabelDescription.Size = new System.Drawing.Size(79, 17);
             this.LabelDescription.TabIndex = 7;
             this.LabelDescription.Text = "Description";
             // 
             // TextBoxDescription
             // 
-            this.TextBoxDescription.Location = new System.Drawing.Point(112, 26);
+            this.TextBoxDescription.Location = new System.Drawing.Point(149, 32);
+            this.TextBoxDescription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.TextBoxDescription.Name = "TextBoxDescription";
-            this.TextBoxDescription.Size = new System.Drawing.Size(148, 20);
-            this.TextBoxDescription.TabIndex = 6;
+            this.TextBoxDescription.Size = new System.Drawing.Size(196, 22);
+            this.TextBoxDescription.TabIndex = 0;
             // 
             // ButtonCancel
             // 
-            this.ButtonCancel.Location = new System.Drawing.Point(168, 66);
+            this.ButtonCancel.Location = new System.Drawing.Point(224, 81);
+            this.ButtonCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonCancel.Name = "ButtonCancel";
-            this.ButtonCancel.Size = new System.Drawing.Size(75, 23);
-            this.ButtonCancel.TabIndex = 5;
+            this.ButtonCancel.Size = new System.Drawing.Size(100, 28);
+            this.ButtonCancel.TabIndex = 2;
             this.ButtonCancel.Text = "Annuler";
             this.ButtonCancel.UseVisualStyleBackColor = true;
             this.ButtonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
             // ButtonApply
             // 
-            this.ButtonApply.Location = new System.Drawing.Point(37, 66);
+            this.ButtonApply.Location = new System.Drawing.Point(49, 81);
+            this.ButtonApply.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ButtonApply.Name = "ButtonApply";
-            this.ButtonApply.Size = new System.Drawing.Size(75, 23);
-            this.ButtonApply.TabIndex = 4;
+            this.ButtonApply.Size = new System.Drawing.Size(100, 28);
+            this.ButtonApply.TabIndex = 1;
             this.ButtonApply.Text = "Appliquer";
             this.ButtonApply.UseVisualStyleBackColor = true;
             this.ButtonApply.Click += new System.EventHandler(this.ButtonApply_Click);
             // 
             // FormModify
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(284, 111);
+            this.ClientSize = new System.Drawing.Size(379, 137);
             this.Controls.Add(this.LabelDescription);
             this.Controls.Add(this.TextBoxDescription);
             this.Controls.Add(this.ButtonCancel);
             this.Controls.Add(this.ButtonApply);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormModify";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormModify";
