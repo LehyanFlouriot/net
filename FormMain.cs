@@ -206,12 +206,33 @@ namespace Hector
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
 
-            FormModifyArticle FormModifyArticle = new FormModifyArticle(DataBase.GetArticleWithRef(listView1.SelectedItems[0].Tag.ToString()), DataBase.GetMarques(), DataBase.GetFamilles(), DataBase.GetSousFamilles()); ;
+            if (listView1.SelectedItems[0].Tag.GetType() == typeof(Marque))
+            {
+                FormModify FormModify = new FormModify((Marque)listView1.SelectedItems[0].Tag);
+                FormModify.ShowDialog();
+                return;
+            }
+            else if (listView1.SelectedItems[0].Tag.GetType() == typeof(Famille))
+            {
+                FormModify FormModify = new FormModify((Famille)listView1.SelectedItems[0].Tag);
+                FormModify.ShowDialog();
+                return;
+            }
+            else if (listView1.SelectedItems[0].Tag.GetType() == typeof(SousFamille))
+            {
+                FormModify FormModify = new FormModify((SousFamille)listView1.SelectedItems[0].Tag);
+                FormModify.ShowDialog();
+                return;
+            }
+            else
+            {
+                FormModifyArticle FormModifyArticle = new FormModifyArticle(DataBase.GetArticleWithRef(listView1.SelectedItems[0].Tag.ToString()), DataBase.GetMarques(), DataBase.GetFamilles(), DataBase.GetSousFamilles()); ;
 
-            FormModifyArticle.ShowDialog();
-            //ListView.SelectedListViewItemCollection selectedItem = listView1.SelectedItems; //Recup la ligne selectionnée
-            //Console.WriteLine("Double clic sur : " + selectedItem[0]);
-            
+                FormModifyArticle.ShowDialog();
+                return;
+                //ListView.SelectedListViewItemCollection selectedItem = listView1.SelectedItems; //Recup la ligne selectionnée
+                //Console.WriteLine("Double clic sur : " + selectedItem[0]);
+            }
         }
 
         protected override bool ProcessCmdKey(ref Message msg, Keys keyData)

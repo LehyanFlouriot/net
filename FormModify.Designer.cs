@@ -79,6 +79,7 @@ namespace Hector
             this.Controls.Add(this.ButtonCancel);
             this.Controls.Add(this.ButtonApply);
             this.Name = "FormModify";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormModify";
             this.Load += new System.EventHandler(this.FormModify_Load);
             this.ResumeLayout(false);

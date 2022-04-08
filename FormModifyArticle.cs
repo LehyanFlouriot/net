@@ -36,6 +36,12 @@ namespace Hector
         {
             InitializeComponent();
 
+            CurrentArticle = Article;
+            LocalMarques = Marques;
+            LocalFamilles = Familles;
+            LocalSousFamilles = SousFamilles;
+
+
             TextBoxDescription.Text = Article.Description;
 
             //Marque
@@ -63,17 +69,14 @@ namespace Hector
             ComboBoxSousFamille.Text = SousFamilles.Find(x => x.RefSousFamille == Article.RefSousFamille).Nom;
 
 
-            CurrentArticle = Article;
-            LocalMarques = Marques;
-            LocalFamilles = Familles;
-            LocalSousFamilles = SousFamilles;
+            
 
         }
         
 
         private void ComboBoxMarque_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            Console.WriteLine("Marque changed");
         }
         /// <summary>
         /// On clic sur le bouton annuler
@@ -143,14 +146,19 @@ namespace Hector
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
+        
         private void ComboBoxFamille_SelectedIndexChanged(object sender, EventArgs e)
         {
             //On actualise les valeurs possible de la combobox sous famille
             string CurrentNomFamille = ComboBoxFamille.Text;
+            Console.WriteLine(ComboBoxFamille.Text);
+
+
             int CurrentRefFamille = LocalFamilles.Find(x => x.Nom == CurrentNomFamille).RefFamille;
 
 
             List<SousFamille> possibleSousFamilles = LocalSousFamilles.FindAll(x => x.RefFamille == CurrentRefFamille);
+            ComboBoxSousFamille.Items.Clear();
             foreach (SousFamille SousFamille in possibleSousFamilles)
             {
                 ComboBoxSousFamille.Items.Add(SousFamille.Nom);
