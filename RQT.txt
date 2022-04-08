@@ -41,3 +41,45 @@ inner join Familles on SousFamilles.RefFamille = Familles.RefFamille
 
 
 select last_insert_rowid();
+
+
+INSERER : 
+
+- ARTICLE :
+INSERT INTO Articles(RefArticle,Description,RefSousFamille,RefMarque,PrixHT,Quantite) values('Ref','Description',1,1,1,1)
+ON CONFLICT(RefArticle) DO UPDATE SET Quantite=Quantite+1;
+
+- MARQUE :
+INSERT INTO Marques(Nom) values('Yes')
+
+- SOUS FAMILLE :
+INSERT INTO sousfamilles(RefFamille,Nom) values('RefFamille','Sous-Famille')
+
+- FAMILLE :
+INSERT INTO familles(Nom) VALUES('Famille');
+
+
+SUPPRIMER :
+
+- ARTICLE :
+DELETE From Articles where RefArticle = 'YES'
+
+- MARQUE :
+DELETE From Marques where RefMarque= YES(entier)
+
+- SOUS FAMILLE :
+DELETE From Familles where RefFamille = YES(entier)
+
+- FAMILLE :
+DELETE From SousFamilles where RefSousFamille = YES(entier)
+
+MODIFIER :
+
+- ARTICLE :
+UPDATE Articles SET Description = 'TADESC', RefSousFamille = TAREFSOUSFAMILLE, RefMarque = TAREFMARQUE, PrixHT = TONPRIX WHERE RefArticle = 'TAREFARTICLE'
+- MARQUE :
+UPDATE Marques SET Nom = 'TONNOM' WHERE RefMarque = TAREFMARQUE
+- SOUS FAMILLE :
+UPDATE SousFamilles SET Nom = 'TONNOM', RefFamille = 'TAREFFAMILLE' WHERE RefSousFamille = TAREFSOUSFAMILLE
+- FAMILLE :
+UPDATE Familles SET Nom = 'TONNOM' WHERE RefFamille = TAREFFAMILLE
