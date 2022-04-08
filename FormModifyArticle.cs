@@ -117,7 +117,14 @@ namespace Hector
                 
                 CurrentArticle.RefSousFamille = LocalSousFamilles.Find(x => x.Nom == ComboBoxSousFamille.Text).RefSousFamille;
                 //Console.WriteLine(ComboBoxMarque.Text);
-                CurrentArticle.PrixHT = float.Parse(TextBoxPrix.Text);
+                try{
+                    CurrentArticle.PrixHT = float.Parse(TextBoxPrix.Text);
+                }
+                catch(Exception ex)
+                {
+                    DialogResult MsgBox = MessageBox.Show("Mettez un prix entier ou à VIRGULE");
+                    return;
+                }
 
             }
             //requete sql pour appliquer le changement
