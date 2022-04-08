@@ -118,5 +118,10 @@ namespace Hector
                 this.Close();
             }
         }
+
+        private void FormModify_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

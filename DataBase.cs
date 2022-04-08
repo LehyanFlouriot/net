@@ -16,7 +16,21 @@ namespace Hector
         private static List<Marque> Marques;
         private static List<Article> Articles;
      
+        
+        public static Article GetArticleWithRef(string Ref)
+        {
+            //requete sql et remplir les champs du coup
+            
+            string RefArticle;
+            string Description;
+            int RefSousFamille;
+            int RefMarque;
+            float PrixHT;
+            int Quantite;
 
+            return new Article(RefArticle, Description, RefSousFamille, RefMarque, PrixHT, Quantite);
+         
+        }
         
         public static List<SousFamille> GetSousFamillesOf(int FamilleRefFamille)
         {

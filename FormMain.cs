@@ -66,7 +66,7 @@ namespace Hector
 
         private void listView1_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            
         }
 
 
@@ -82,7 +82,7 @@ namespace Hector
             string Name = e.Node.Name;
             if (Text == "Tous les articles")
             {
-                this.listView1.Columns.Add("Description", -2, HorizontalAlignment.Left);
+                this.listView1.Columns.Add("Description", 300, HorizontalAlignment.Left);
                 this.listView1.Columns.Add("Familles", -2, HorizontalAlignment.Left);
                 this.listView1.Columns.Add("Sous-Familles", -2, HorizontalAlignment.Left);
                 this.listView1.Columns.Add("Marques", -2, HorizontalAlignment.Left);
@@ -139,7 +139,7 @@ namespace Hector
             else if (Name.Contains("SousFamille"))
             {
                 string RefSousFamille = Name.Substring(11);
-                this.listView1.Columns.Add("Description", -2, HorizontalAlignment.Left);
+                this.listView1.Columns.Add("Description", 300, HorizontalAlignment.Left);
                 this.listView1.Columns.Add("Familles", -2, HorizontalAlignment.Left);
                 this.listView1.Columns.Add("Sous-Familles", -2, HorizontalAlignment.Left);
                 this.listView1.Columns.Add("Marques", -2, HorizontalAlignment.Left);
@@ -164,7 +164,7 @@ namespace Hector
             else if (Name.Contains("Marque"))
             {
                 string RefMarque = Name.Substring(6);
-                this.listView1.Columns.Add("Description", -2, HorizontalAlignment.Left);
+                this.listView1.Columns.Add("Description", 300, HorizontalAlignment.Left);
                 this.listView1.Columns.Add("Familles", -2, HorizontalAlignment.Left);
                 this.listView1.Columns.Add("Sous-Familles", -2, HorizontalAlignment.Left);
                 this.listView1.Columns.Add("Marques", -2, HorizontalAlignment.Left);
@@ -192,9 +192,13 @@ namespace Hector
 
         }
 
-        private void listView1_MouseDoubleClick(object sender, MouseEventArgs e)
-        {
 
+        private void listView1_DoubleClick(object sender, EventArgs e)
+        {
+            DialogResult msg = MessageBox.Show(listView1.SelectedItems[0].Text);
+            //ListView.SelectedListViewItemCollection selectedItem = listView1.SelectedItems; //Recup la ligne selectionnée
+            //Console.WriteLine("Double clic sur : " + selectedItem[0]);
+            
         }
     }
 }
