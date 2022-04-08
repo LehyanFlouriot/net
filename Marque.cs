@@ -18,6 +18,12 @@ namespace Hector
             Nom = nom;
         }
 
+        public Marque(string nom)
+        {
+
+            Nom = nom;
+        }
+
         internal static int Existe(string NomMarque)
         {
             int Ex = -1;

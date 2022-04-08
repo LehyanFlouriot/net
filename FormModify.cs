@@ -80,13 +80,22 @@ namespace Hector
         {
             if (CheckBoxes() == true)
             {
+                
                 //Changer les valeurs de l'article
                 if(CurrentMarque != null)
                 {
+                    
                     CurrentMarque.Nom = TextBoxDescription.Text;
                     //Reload dans la base ou jsp quoi
                     //Requete sql pour le changer
-                    DataBase.ModifyMarque(CurrentMarque.RefMarque, CurrentMarque.Nom);
+                    if (Marque.Existe(CurrentMarque.Nom) != -1) //CA EXISTE
+                    {
+                        DataBase.ModifyMarque(CurrentMarque.RefMarque, CurrentMarque.Nom);
+                    }
+                    else
+                    {
+                        Marque.InsererMarque(CurrentMarque.Nom);
+                    }
                     
                 }
                 if (CurrentFamille != null)
@@ -94,19 +103,31 @@ namespace Hector
                     CurrentFamille.Nom = TextBoxDescription.Text;
                     //Reload dans la base ou jsp quoi
                     //Requete sql pour le changer
-                    DataBase.ModifyFamille(CurrentFamille.RefFamille, CurrentFamille.Nom);
-                    
+                    if (Famille.Existe(CurrentFamille.Nom) != -1)
+                    {
+                        DataBase.ModifyFamille(CurrentFamille.RefFamille, CurrentFamille.Nom);
+                    }
+                    else
+                    {
+                        Famille.InsererFamille(CurrentFamille.Nom);
+                    }
                 }
                 if (CurrentSousFamille != null)
                 {
                     CurrentSousFamille.Nom = TextBoxDescription.Text;
                     //Reload dans la base ou jsp quoi
                     //Requete sql pour le changer
-                    DataBase.ModifySousFamille(CurrentSousFamille.RefSousFamille, CurrentSousFamille.RefFamille, CurrentSousFamille.Nom);
+                    if (SousFamille.Existe(CurrentSousFamille.Nom) != -1)
+                    {
+                        DataBase.ModifySousFamille(CurrentSousFamille.RefSousFamille, CurrentSousFamille.RefFamille, CurrentSousFamille.Nom);
+                    }
+                    else
+                    {
+                        SousFamille.InsererSousFamille(CurrentSousFamille.RefFamille, CurrentSousFamille.Nom);
+                    }
                 }
             }
 
-            //GERER LE CAS OU IL n'Y A PAS DE SOUS FAMILLE et le cas ou si on gere les familles lors du changement de la famille, on change les sous familles associées
             ShowResult();
             return;
         }

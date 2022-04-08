@@ -159,6 +159,7 @@ namespace Hector
                     string Description = Reader.GetString(0);
                     string Marque = Reader.GetString(1);
                     string Famille = Reader.GetString(2);
+                    CurrentFamilleRef = int.Parse(Famille);
                     string SousFamille = Reader.GetString(3);
                     int Quantite = Reader.GetInt32(4);
                     string RefArticle = Reader.GetString(5);
@@ -275,5 +276,68 @@ namespace Hector
             // Lance le tri
             this.listView1.Sort();
         }
+
+        public static int CurrentFamilleRef;
+
+        private void ajouterToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems[0].Tag.GetType() == typeof(Marque))
+            {
+                Marque NewMarque = new Marque("");
+                FormModify FormModify = new FormModify(NewMarque);
+                FormModify.ShowDialog();
+            }
+            else if (listView1.SelectedItems[0].Tag.GetType() == typeof(Famille))
+            {
+                Famille NewFamille = new Famille("");
+                FormModify FormModify = new FormModify(NewFamille);
+                FormModify.ShowDialog();
+            }
+            else if (listView1.SelectedItems[0].Tag.GetType() == typeof(SousFamille))
+            {
+                SousFamille NewSousFamille = new SousFamille(CurrentFamilleRef, "");
+                FormModify FormModify = new FormModify(NewSousFamille);
+                FormModify.ShowDialog();
+            }
+            else
+            {
+                Article NewArticle = new Article("");
+                FormModifyArticle FormModifyArticle = new FormModifyArticle(NewArticle, DataBase.GetMarques(), DataBase.GetFamilles(), DataBase.GetSousFamilles(), true);
+                FormModifyArticle.ShowDialog();
+            }
+            return;
+        }
+
+        private void modifierToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (listView1.SelectedItems[0].Tag.GetType() == typeof(Marque))
+            {
+                FormModify FormModify = new FormModify((Marque)listView1.SelectedItems[0].Tag);
+                FormModify.ShowDialog();
+               
+            }
+            else if (listView1.SelectedItems[0].Tag.GetType() == typeof(Famille))
+            {
+                FormModify FormModify = new FormModify((Famille)listView1.SelectedItems[0].Tag);
+                FormModify.ShowDialog();
+               
+            }
+            else if (listView1.SelectedItems[0].Tag.GetType() == typeof(SousFamille))
+            {
+                FormModify FormModify = new FormModify((SousFamille)listView1.SelectedItems[0].Tag);
+                FormModify.ShowDialog();
+              
+            }
+            else
+            {
+                FormModifyArticle FormModifyArticle = new FormModifyArticle(DataBase.GetArticleWithRef(listView1.SelectedItems[0].Tag.ToString()), DataBase.GetMarques(), DataBase.GetFamilles(), DataBase.GetSousFamilles()); ;
+
+                FormModifyArticle.ShowDialog();
+            
+            }
+            return;
+        }
+
+
     }
 }

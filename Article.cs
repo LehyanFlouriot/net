@@ -22,7 +22,11 @@ namespace Hector
             this.Quantite = Quantite;
         }
 
-        
+        public Article(string Description)
+        {
+            this.Description = Description;
+        }
+
 
         public string RefArticle { get; set; }
         public string Description { get; set; }
