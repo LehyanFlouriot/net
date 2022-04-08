@@ -59,6 +59,7 @@ namespace Hector
             this.ButtonCancel.TabIndex = 5;
             this.ButtonCancel.Text = "Annuler";
             this.ButtonCancel.UseVisualStyleBackColor = true;
+            this.ButtonCancel.Click += new System.EventHandler(this.ButtonCancel_Click);
             // 
             // ButtonApply
             // 
@@ -68,6 +69,7 @@ namespace Hector
             this.ButtonApply.TabIndex = 4;
             this.ButtonApply.Text = "Appliquer";
             this.ButtonApply.UseVisualStyleBackColor = true;
+            this.ButtonApply.Click += new System.EventHandler(this.ButtonApply_Click);
             // 
             // FormModify
             // 
