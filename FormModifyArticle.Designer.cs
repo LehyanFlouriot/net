@@ -92,7 +92,7 @@ namespace Hector
             // LabelFamille
             // 
             this.LabelFamille.AutoSize = true;
-            this.LabelFamille.Location = new System.Drawing.Point(26, 113);
+            this.LabelFamille.Location = new System.Drawing.Point(49, 113);
             this.LabelFamille.Name = "LabelFamille";
             this.LabelFamille.Size = new System.Drawing.Size(39, 13);
             this.LabelFamille.TabIndex = 9;
