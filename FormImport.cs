@@ -63,8 +63,8 @@ namespace Hector
                 InvalidPath();
                 return;
             }
-            DataBase.ReadCsv(ImportFilePath, this.ProgressBar);
-            ShowImportResult();
+            int NbInsert = DataBase.ReadCsv(ImportFilePath, this.ProgressBar);
+            ShowImportResult(NbInsert);
         }
         /// <summary>
         /// Clic sur le boutton ecraser, ecrase la base de donnée actuelle et la remplie avec les nouvelles données
@@ -79,16 +79,16 @@ namespace Hector
                 return;
             }
             DataBase.RemoveAll();
-            DataBase.ReadCsv(ImportFilePath, this.ProgressBar);
-            ShowImportResult();
+            int NbInsert = DataBase.ReadCsv(ImportFilePath, this.ProgressBar);
+            ShowImportResult(NbInsert);
         }
         /// <summary>
         /// Creer une message box qui affiche les resultats de l'import
         /// </summary>
-        private void ShowImportResult()
+        private void ShowImportResult(int NbInsert)
         {
             
-            DialogResult Result = MessageBox.Show("Données ajoutées avec succès", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DialogResult Result = MessageBox.Show(""+NbInsert+" Lignes affectées avec succès, Actualisez avec F5", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
             //L'utilisateur a dit ok
             if(Result == DialogResult.OK)
             {
