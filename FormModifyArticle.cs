@@ -178,9 +178,15 @@ namespace Hector
                 }
             }
             //requete sql pour appliquer le changement
-            
-            DataBase.ModifyArticle(CurrentArticle.RefArticle, CurrentArticle.Description, CurrentArticle.RefSousFamille, CurrentArticle.RefMarque, CurrentArticle.PrixHT);
-            ShowResult();
+            if (Article.Existe(CurrentArticle.RefArticle) != -1)
+            {
+                DataBase.ModifyArticle(CurrentArticle.RefArticle, CurrentArticle.Description, CurrentArticle.RefSousFamille, CurrentArticle.RefMarque, CurrentArticle.PrixHT);
+            }
+            else
+            {
+                Article.InsererArticle(CurrentArticle.RefArticle, CurrentArticle.Description, CurrentArticle.RefSousFamille, CurrentArticle.RefMarque, CurrentArticle.PrixHT, 1);
+            }
+                ShowResult();
         }
 
         private void ShowResult()

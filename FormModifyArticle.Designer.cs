@@ -45,9 +45,10 @@ namespace Hector
             // 
             // ButtonApply
             // 
-            this.ButtonApply.Location = new System.Drawing.Point(35, 226);
+            this.ButtonApply.Location = new System.Drawing.Point(52, 224);
+            this.ButtonApply.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ButtonApply.Name = "ButtonApply";
-            this.ButtonApply.Size = new System.Drawing.Size(100, 28);
+            this.ButtonApply.Size = new System.Drawing.Size(75, 23);
             this.ButtonApply.TabIndex = 4;
             this.ButtonApply.Text = "Appliquer";
             this.ButtonApply.UseVisualStyleBackColor = true;
@@ -55,9 +56,10 @@ namespace Hector
             // 
             // ButtonCancel
             // 
-            this.ButtonCancel.Location = new System.Drawing.Point(158, 226);
+            this.ButtonCancel.Location = new System.Drawing.Point(144, 224);
+            this.ButtonCancel.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.ButtonCancel.Name = "ButtonCancel";
-            this.ButtonCancel.Size = new System.Drawing.Size(100, 28);
+            this.ButtonCancel.Size = new System.Drawing.Size(75, 23);
             this.ButtonCancel.TabIndex = 5;
             this.ButtonCancel.Text = "Annuler";
             this.ButtonCancel.UseVisualStyleBackColor = true;
@@ -65,20 +67,18 @@ namespace Hector
             // 
             // TextBoxDescription
             // 
-            this.TextBoxDescription.Location = new System.Drawing.Point(141, 33);
-            this.TextBoxDescription.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.TextBoxDescription.Location = new System.Drawing.Point(106, 27);
             this.TextBoxDescription.Name = "TextBoxDescription";
-            this.TextBoxDescription.Size = new System.Drawing.Size(196, 22);
+            this.TextBoxDescription.Size = new System.Drawing.Size(148, 20);
             this.TextBoxDescription.TabIndex = 0;
             this.TextBoxDescription.TextChanged += new System.EventHandler(this.TextBoxDescription_TextChanged);
             // 
             // LabelDescription
             // 
             this.LabelDescription.AutoSize = true;
-            this.LabelDescription.Location = new System.Drawing.Point(43, 37);
-            this.LabelDescription.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LabelDescription.Location = new System.Drawing.Point(32, 30);
             this.LabelDescription.Name = "LabelDescription";
-            this.LabelDescription.Size = new System.Drawing.Size(79, 17);
+            this.LabelDescription.Size = new System.Drawing.Size(60, 13);
             this.LabelDescription.TabIndex = 7;
             this.LabelDescription.Text = "Description";
             this.LabelDescription.Click += new System.EventHandler(this.LabelDescription_Click);
@@ -86,10 +86,9 @@ namespace Hector
             // LabelMarque
             // 
             this.LabelMarque.AutoSize = true;
-            this.LabelMarque.Location = new System.Drawing.Point(65, 89);
-            this.LabelMarque.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LabelMarque.Location = new System.Drawing.Point(49, 72);
             this.LabelMarque.Name = "LabelMarque";
-            this.LabelMarque.Size = new System.Drawing.Size(56, 17);
+            this.LabelMarque.Size = new System.Drawing.Size(43, 13);
             this.LabelMarque.TabIndex = 0;
             this.LabelMarque.Text = "Marque";
             this.LabelMarque.Click += new System.EventHandler(this.LabelMarque_Click);
@@ -97,56 +96,52 @@ namespace Hector
             // LabelFamille
             // 
             this.LabelFamille.AutoSize = true;
-            this.LabelFamille.Location = new System.Drawing.Point(65, 139);
-            this.LabelFamille.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LabelFamille.Location = new System.Drawing.Point(49, 113);
             this.LabelFamille.Name = "LabelFamille";
-            this.LabelFamille.Size = new System.Drawing.Size(52, 17);
+            this.LabelFamille.Size = new System.Drawing.Size(39, 13);
             this.LabelFamille.TabIndex = 9;
             this.LabelFamille.Text = "Famille";
             // 
             // ComboBoxMarque
             // 
             this.ComboBoxMarque.FormattingEnabled = true;
-            this.ComboBoxMarque.Location = new System.Drawing.Point(141, 85);
-            this.ComboBoxMarque.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ComboBoxMarque.Location = new System.Drawing.Point(106, 69);
             this.ComboBoxMarque.Name = "ComboBoxMarque";
-            this.ComboBoxMarque.Size = new System.Drawing.Size(196, 24);
+            this.ComboBoxMarque.Size = new System.Drawing.Size(148, 21);
             this.ComboBoxMarque.TabIndex = 1;
             this.ComboBoxMarque.SelectedIndexChanged += new System.EventHandler(this.ComboBoxMarque_SelectedIndexChanged);
             // 
             // ComboBoxFamille
             // 
             this.ComboBoxFamille.FormattingEnabled = true;
-            this.ComboBoxFamille.Location = new System.Drawing.Point(141, 135);
-            this.ComboBoxFamille.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ComboBoxFamille.Location = new System.Drawing.Point(106, 110);
             this.ComboBoxFamille.Name = "ComboBoxFamille";
-            this.ComboBoxFamille.Size = new System.Drawing.Size(196, 24);
+            this.ComboBoxFamille.Size = new System.Drawing.Size(148, 21);
             this.ComboBoxFamille.TabIndex = 2;
             this.ComboBoxFamille.SelectedIndexChanged += new System.EventHandler(this.ComboBoxFamille_SelectedIndexChanged);
             // 
             // ComboBoxSousFamille
             // 
             this.ComboBoxSousFamille.FormattingEnabled = true;
-            this.ComboBoxSousFamille.Location = new System.Drawing.Point(141, 187);
-            this.ComboBoxSousFamille.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ComboBoxSousFamille.Location = new System.Drawing.Point(106, 152);
             this.ComboBoxSousFamille.Name = "ComboBoxSousFamille";
-            this.ComboBoxSousFamille.Size = new System.Drawing.Size(196, 24);
+            this.ComboBoxSousFamille.Size = new System.Drawing.Size(148, 21);
             this.ComboBoxSousFamille.TabIndex = 3;
             // 
             // LabelSousFamille
             // 
             this.LabelSousFamille.AutoSize = true;
-            this.LabelSousFamille.Location = new System.Drawing.Point(35, 191);
-            this.LabelSousFamille.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.LabelSousFamille.Location = new System.Drawing.Point(26, 155);
             this.LabelSousFamille.Name = "LabelSousFamille";
-            this.LabelSousFamille.Size = new System.Drawing.Size(88, 17);
+            this.LabelSousFamille.Size = new System.Drawing.Size(66, 13);
             this.LabelSousFamille.TabIndex = 8;
             this.LabelSousFamille.Text = "Sous Famille";
             // 
             // LabelPrix
             // 
             this.LabelPrix.AutoSize = true;
-            this.LabelPrix.Location = new System.Drawing.Point(49, 195);
+            this.LabelPrix.Location = new System.Drawing.Point(53, 194);
+            this.LabelPrix.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.LabelPrix.Name = "LabelPrix";
             this.LabelPrix.Size = new System.Drawing.Size(39, 13);
             this.LabelPrix.TabIndex = 15;
@@ -154,14 +149,15 @@ namespace Hector
             // 
             // TextBoxPrix
             // 
-            this.TextBoxPrix.Location = new System.Drawing.Point(106, 192);
+            this.TextBoxPrix.Location = new System.Drawing.Point(106, 191);
+            this.TextBoxPrix.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.TextBoxPrix.Name = "TextBoxPrix";
             this.TextBoxPrix.Size = new System.Drawing.Size(148, 20);
             this.TextBoxPrix.TabIndex = 16;
             // 
             // FormModifyArticle
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(284, 261);
             this.Controls.Add(this.TextBoxPrix);
@@ -176,7 +172,6 @@ namespace Hector
             this.Controls.Add(this.TextBoxDescription);
             this.Controls.Add(this.ButtonCancel);
             this.Controls.Add(this.ButtonApply);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "FormModifyArticle";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "FormModifyArticle";
