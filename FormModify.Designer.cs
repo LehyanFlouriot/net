@@ -80,6 +80,7 @@ namespace Hector
             this.Controls.Add(this.ButtonApply);
             this.Name = "FormModify";
             this.Text = "FormModify";
+            this.Load += new System.EventHandler(this.FormModify_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
