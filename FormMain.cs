@@ -75,7 +75,7 @@ namespace Hector
         private void treeView1_NodeMouseClick(object sender, TreeNodeMouseClickEventArgs e)
         {
             this.listView1.Clear();
-
+            ColumnSorter.SortColumn = 0;
             listView1.GridLines = true;
             listView1.FullRowSelect = true;
 
@@ -198,7 +198,7 @@ namespace Hector
                     this.listView1.Items.Add(Item);
                 }
             }
-            ColumnSorter.SortColumn = 0;
+            
             ColumnSorter.Order = SortOrder.Ascending;
             listView1.Sort();
         }
