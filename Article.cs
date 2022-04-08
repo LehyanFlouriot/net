@@ -39,7 +39,7 @@ namespace Hector
         internal static int Existe(string RefArticle)
         {
             int Ex = -1;
-            var Command = new SQLiteCommand("SELECT RefArticle from Articles where nom RefArticle ='" + RefArticle + "'", DataBase.Conn);
+            var Command = new SQLiteCommand("SELECT RefArticle from Articles where nom RefArticle like '" + RefArticle + "'", DataBase.Conn);
             SQLiteDataReader Reader = Command.ExecuteReader();
             if (Reader.HasRows)
             {
