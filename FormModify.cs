@@ -86,26 +86,29 @@ namespace Hector
                     CurrentMarque.Nom = TextBoxDescription.Text;
                     //Reload dans la base ou jsp quoi
                     //Requete sql pour le changer
-                    return;
+                    DataBase.ModifyMarque(CurrentMarque.RefMarque, CurrentMarque.Nom);
+                    
                 }
                 if (CurrentFamille != null)
                 {
                     CurrentFamille.Nom = TextBoxDescription.Text;
                     //Reload dans la base ou jsp quoi
                     //Requete sql pour le changer
-                    return;
+                    DataBase.ModifyFamille(CurrentFamille.RefFamille, CurrentFamille.Nom);
+                    
                 }
                 if (CurrentSousFamille != null)
                 {
                     CurrentSousFamille.Nom = TextBoxDescription.Text;
                     //Reload dans la base ou jsp quoi
                     //Requete sql pour le changer
-                    return;
+                    DataBase.ModifySousFamille(CurrentSousFamille.RefSousFamille, CurrentSousFamille.RefFamille, CurrentSousFamille.Nom);
                 }
             }
 
             //GERER LE CAS OU IL n'Y A PAS DE SOUS FAMILLE et le cas ou si on gere les familles lors du changement de la famille, on change les sous familles associées
             ShowResult();
+            return;
         }
 
         private void ShowResult()

@@ -43,6 +43,7 @@ namespace Hector
 
 
             TextBoxDescription.Text = Article.Description;
+            TextBoxPrix.Text = Article.PrixHT.ToString();
 
             //Marque
             foreach(Marque Marque in Marques)
@@ -76,7 +77,7 @@ namespace Hector
 
         private void ComboBoxMarque_SelectedIndexChanged(object sender, EventArgs e)
         {
-            Console.WriteLine("Marque changed");
+            //Console.WriteLine("Marque changed");
         }
         /// <summary>
         /// On clic sur le bouton annuler
@@ -93,7 +94,7 @@ namespace Hector
         /// <returns></returns>
         private bool CheckBoxes()
         {
-            if (TextBoxDescription.Text.Length == 0)
+            if (TextBoxDescription.Text.Length <= 0 && TextBoxPrix.Text.Length <= 0)
                 return false;
             return true;
         }
@@ -110,8 +111,24 @@ namespace Hector
                 //Changer les valeurs de l'article
                 CurrentArticle.Description = TextBoxDescription.Text;
 
+
+
+                CurrentArticle.RefMarque = LocalMarques.Find(x => x.Nom == ComboBoxMarque.Text).RefMarque;
+                
+                CurrentArticle.RefSousFamille = LocalSousFamilles.Find(x => x.Nom == ComboBoxSousFamille.Text).RefSousFamille;
+                //Console.WriteLine(ComboBoxMarque.Text);
+                try{
+                    CurrentArticle.PrixHT = float.Parse(TextBoxPrix.Text);
+                }
+                catch(Exception ex)
+                {
+                    DialogResult MsgBox = MessageBox.Show("Mettez un prix entier ou à VIRGULE");
+                    return;
+                }
+
             }
             //requete sql pour appliquer le changement
+            DataBase.ModifyArticle(CurrentArticle.RefArticle, CurrentArticle.Description, CurrentArticle.RefSousFamille, CurrentArticle.RefMarque, CurrentArticle.PrixHT);
             ShowResult();
         }
 
@@ -151,7 +168,7 @@ namespace Hector
         {
             //On actualise les valeurs possible de la combobox sous famille
             string CurrentNomFamille = ComboBoxFamille.Text;
-            Console.WriteLine(ComboBoxFamille.Text);
+            //Console.WriteLine(ComboBoxFamille.Text);
 
 
             int CurrentRefFamille = LocalFamilles.Find(x => x.Nom == CurrentNomFamille).RefFamille;
@@ -161,9 +178,12 @@ namespace Hector
             ComboBoxSousFamille.Items.Clear();
             foreach (SousFamille SousFamille in possibleSousFamilles)
             {
+
                 ComboBoxSousFamille.Items.Add(SousFamille.Nom);
             }
             ComboBoxSousFamille.SelectedIndex = 0;
         }
+
+
     }
 }

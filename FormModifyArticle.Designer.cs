@@ -39,12 +39,13 @@ namespace Hector
             this.ComboBoxFamille = new System.Windows.Forms.ComboBox();
             this.ComboBoxSousFamille = new System.Windows.Forms.ComboBox();
             this.LabelSousFamille = new System.Windows.Forms.Label();
+            this.LabelPrix = new System.Windows.Forms.Label();
+            this.TextBoxPrix = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // ButtonApply
             // 
-            this.ButtonApply.Location = new System.Drawing.Point(47, 261);
-            this.ButtonApply.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ButtonApply.Location = new System.Drawing.Point(35, 226);
             this.ButtonApply.Name = "ButtonApply";
             this.ButtonApply.Size = new System.Drawing.Size(100, 28);
             this.ButtonApply.TabIndex = 4;
@@ -54,8 +55,7 @@ namespace Hector
             // 
             // ButtonCancel
             // 
-            this.ButtonCancel.Location = new System.Drawing.Point(211, 261);
-            this.ButtonCancel.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ButtonCancel.Location = new System.Drawing.Point(158, 226);
             this.ButtonCancel.Name = "ButtonCancel";
             this.ButtonCancel.Size = new System.Drawing.Size(100, 28);
             this.ButtonCancel.TabIndex = 5;
@@ -143,11 +143,29 @@ namespace Hector
             this.LabelSousFamille.TabIndex = 8;
             this.LabelSousFamille.Text = "Sous Famille";
             // 
+            // LabelPrix
+            // 
+            this.LabelPrix.AutoSize = true;
+            this.LabelPrix.Location = new System.Drawing.Point(49, 195);
+            this.LabelPrix.Name = "LabelPrix";
+            this.LabelPrix.Size = new System.Drawing.Size(39, 13);
+            this.LabelPrix.TabIndex = 15;
+            this.LabelPrix.Text = "PrixHT";
+            // 
+            // TextBoxPrix
+            // 
+            this.TextBoxPrix.Location = new System.Drawing.Point(106, 192);
+            this.TextBoxPrix.Name = "TextBoxPrix";
+            this.TextBoxPrix.Size = new System.Drawing.Size(148, 20);
+            this.TextBoxPrix.TabIndex = 16;
+            // 
             // FormModifyArticle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(379, 321);
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.Controls.Add(this.TextBoxPrix);
+            this.Controls.Add(this.LabelPrix);
             this.Controls.Add(this.ComboBoxSousFamille);
             this.Controls.Add(this.LabelSousFamille);
             this.Controls.Add(this.ComboBoxFamille);
@@ -179,5 +197,7 @@ namespace Hector
         private System.Windows.Forms.ComboBox ComboBoxFamille;
         private System.Windows.Forms.ComboBox ComboBoxSousFamille;
         private System.Windows.Forms.Label LabelSousFamille;
+        private System.Windows.Forms.Label LabelPrix;
+        private System.Windows.Forms.TextBox TextBoxPrix;
     }
 }
