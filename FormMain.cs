@@ -205,7 +205,10 @@ namespace Hector
 
         private void listView1_DoubleClick(object sender, EventArgs e)
         {
-            DialogResult msg = MessageBox.Show(listView1.SelectedItems[0].Text);
+
+            FormModifyArticle FormModifyArticle = new FormModifyArticle(DataBase.GetArticleWithRef(listView1.SelectedItems[0].Tag.ToString()), DataBase.GetMarques(), DataBase.GetFamilles(), DataBase.GetSousFamilles()); ;
+
+            FormModifyArticle.ShowDialog();
             //ListView.SelectedListViewItemCollection selectedItem = listView1.SelectedItems; //Recup la ligne selectionnée
             //Console.WriteLine("Double clic sur : " + selectedItem[0]);
             

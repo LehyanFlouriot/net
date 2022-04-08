@@ -328,6 +328,7 @@ namespace Hector
                     int Iterator = 0; // To skip the first line
                     while ((Line = Sr.ReadLine()) != null)
                     {
+                        
                         if (Iterator != 0)
                         {
                             
