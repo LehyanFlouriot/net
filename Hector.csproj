@@ -69,6 +69,7 @@
     <Compile Include="FormModifyArticle.Designer.cs">
       <DependentUpon>FormModifyArticle.cs</DependentUpon>
     </Compile>
+    <Compile Include="ListViewColumnSorter.cs" />
     <Compile Include="SousFamille.cs" />
     <Compile Include="Famille.cs" />
     <Compile Include="Marque.cs" />

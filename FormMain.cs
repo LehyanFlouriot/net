@@ -13,6 +13,7 @@ namespace Hector
 {
     public partial class FormMain : Form
     {
+        private ListViewColumnSorter ColumnSorter;
         public FormMain()
         {
             InitializeComponent();
@@ -27,7 +28,8 @@ namespace Hector
 
             }
             DataBase.InitializeList(this.treeView1);
-            
+            ColumnSorter = new ListViewColumnSorter();
+            this.listView1.ListViewItemSorter = ColumnSorter;
         }
 
       
@@ -196,6 +198,9 @@ namespace Hector
                     this.listView1.Items.Add(Item);
                 }
             }
+            ColumnSorter.SortColumn = 0;
+            ColumnSorter.Order = SortOrder.Ascending;
+            listView1.Sort();
         }
         private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
@@ -244,6 +249,31 @@ namespace Hector
                 Handled = true;
             }
             return Handled;
+        }
+
+        private void listView1_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            if (e.Column == ColumnSorter.SortColumn)
+            {
+                // Inversion du tri
+                if (ColumnSorter.Order == SortOrder.Ascending)
+                {
+                    ColumnSorter.Order = SortOrder.Descending;
+                }
+                else
+                {
+                    ColumnSorter.Order = SortOrder.Ascending;
+                }
+            }
+            else
+            {
+                // Changement de colonne de tri
+                ColumnSorter.SortColumn = e.Column;
+                ColumnSorter.Order = SortOrder.Ascending;
+            }
+
+            // Lance le tri
+            this.listView1.Sort();
         }
     }
 }
