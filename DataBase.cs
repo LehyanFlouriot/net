@@ -16,20 +16,32 @@ namespace Hector
         private static List<Marque> Marques;
         private static List<Article> Articles;
      
-        
+        /// <summary>
+        /// Return un objet article depuis une ref
+        /// </summary>
+        /// <param name="Ref"></param>
+        /// <returns></returns>
         public static Article GetArticleWithRef(string Ref)
         {
             //requete sql et remplir les champs du coup
-            
-            string RefArticle;
-            string Description;
-            int RefSousFamille;
-            int RefMarque;
-            float PrixHT;
-            int Quantite;
 
-            return new Article(RefArticle, Description, RefSousFamille, RefMarque, PrixHT, Quantite);
-         
+            SQLiteCommand SelectCommand = new SQLiteCommand("SELECT RefArticle,Description,RefSousFamille,RefMarque,PrixHT,Quantite from Articles where RefArticle = "+Ref, Conn);
+
+            SQLiteDataReader Reader = SelectCommand.ExecuteReader();
+
+            //Tant que il y a un article
+            Reader.Read();
+            
+                string RefArticle = Reader.GetString(0);
+                string Description = Reader.GetString(1);
+                int RefSousFamille = Reader.GetInt32(2);
+                int RefMarque = Reader.GetInt32(3);
+                float PrixHT = Reader.GetFloat(4);
+                int Quantite = Reader.GetInt32(5);
+
+                return new Article(RefArticle, Description, RefSousFamille, RefMarque, PrixHT, Quantite);
+                
+            
         }
         
         public static List<SousFamille> GetSousFamillesOf(int FamilleRefFamille)
