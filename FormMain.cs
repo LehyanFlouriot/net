@@ -14,6 +14,15 @@ namespace Hector
     public partial class FormMain : Form
     {
         private ListViewColumnSorter ColumnSorter;
+        private enum Etat
+        {
+            ARTICLE,
+            MARQUE,
+            FAMILLE,
+            SOUSFAMILLE
+        };
+        private Etat EtatSelection;
+
         public FormMain()
         {
             InitializeComponent();
@@ -107,6 +116,7 @@ namespace Hector
                     Item.Tag = RefArticle;
                     this.listView1.Items.Add(Item);
                 }
+                EtatSelection = Etat.ARTICLE;
 
             }
             else if (Text == "Familles")
@@ -120,6 +130,7 @@ namespace Hector
                     this.listView1.Items.Add(Item);
                     
                 }
+                EtatSelection = Etat.FAMILLE;
             }
             else if (Text == "Marques")
             {
@@ -131,6 +142,7 @@ namespace Hector
                     Item.Tag = Marque;
                     this.listView1.Items.Add(Item);
                 }
+                EtatSelection = Etat.MARQUE;
             }
             else if (Name.Contains("Familles"))
             {
@@ -143,6 +155,7 @@ namespace Hector
                     Item.Tag = SousFamille;
                     this.listView1.Items.Add(Item);
                 }
+                EtatSelection = Etat.FAMILLE;
             }
             else if (Name.Contains("SousFamille"))
             {
@@ -159,7 +172,8 @@ namespace Hector
                     string Description = Reader.GetString(0);
                     string Marque = Reader.GetString(1);
                     string Famille = Reader.GetString(2);
-                    CurrentFamilleRef = int.Parse(Famille);
+                    
+                    CurrentFamilleRef = DataBase.GetFamilles().Find(x => x.Nom == Famille).RefFamille;
                     string SousFamille = Reader.GetString(3);
                     int Quantite = Reader.GetInt32(4);
                     string RefArticle = Reader.GetString(5);
@@ -171,6 +185,7 @@ namespace Hector
                     Item.Tag = RefArticle;
                     this.listView1.Items.Add(Item);
                 }
+                EtatSelection = Etat.SOUSFAMILLE;
             }
             else if (Name.Contains("Marque"))
             {
@@ -198,8 +213,10 @@ namespace Hector
                     Item.Tag = RefArticle;
                     this.listView1.Items.Add(Item);
                 }
+                EtatSelection = Etat.MARQUE;
             }
             
+
             ColumnSorter.Order = SortOrder.Ascending;
             listView1.Sort();
         }
@@ -281,7 +298,27 @@ namespace Hector
 
         private void ajouterToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (listView1.SelectedItems[0].Tag.GetType() == typeof(Marque))
+
+            if (EtatSelection == Etat.MARQUE)
+            {
+                Marque NewMarque = new Marque("");
+                FormModify FormModify = new FormModify(NewMarque);
+                FormModify.ShowDialog();
+            }
+            else if (EtatSelection == Etat.FAMILLE)
+            {
+                Famille NewFamille = new Famille("");
+                FormModify FormModify = new FormModify(NewFamille);
+                FormModify.ShowDialog();
+            }
+            else if (EtatSelection == Etat.SOUSFAMILLE)
+            {
+                SousFamille NewSousFamille = new SousFamille(CurrentFamilleRef, "");
+                FormModify FormModify = new FormModify(NewSousFamille);
+                FormModify.ShowDialog();
+            }
+            
+            else if (listView1.SelectedItems[0].Tag.GetType() == typeof(Marque))
             {
                 Marque NewMarque = new Marque("");
                 FormModify FormModify = new FormModify(NewMarque);
@@ -338,6 +375,18 @@ namespace Hector
             return;
         }
 
-
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+            if(listView1.SelectedItems.Count <= 0)
+            {
+                ContextMenuStrip.Items[1].Enabled = false;
+                ContextMenuStrip.Items[2].Enabled = false;
+            }
+            else
+            {
+                ContextMenuStrip.Items[1].Enabled = true;
+                ContextMenuStrip.Items[2].Enabled = true;
+            }
+        }
     }
 }
