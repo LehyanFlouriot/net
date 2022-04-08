@@ -15,28 +15,46 @@ namespace Hector
         private static List<SousFamille> SousFamilles;
         private static List<Marque> Marques;
         private static List<Article> Articles;
-     
 
-
-        public static void SupprimerArticle(string Ref)
+        public static void ModifyArticle(string Ref,string Desc, int RefSousFamille, int RefMarque, float PrixHT)
+        {
+            var Command = new SQLiteCommand("UPDATE Articles SET Description = '"+Desc+ "', RefSousFamille = '" + RefSousFamille + "', RefMarque = '" + RefMarque + "', PrixHT = '" + PrixHT + "' WHERE RefArticle = '" + Ref + "'", DataBase.Conn);
+            Command.ExecuteNonQuery();
+        }
+        public static void ModifyMarque(int RefMarque, string Nom)
+        {
+            var Command = new SQLiteCommand("UPDATE Marques SET Nom = '" + Nom + "' WHERE RefMarque = '" + RefMarque + "'", DataBase.Conn);
+            Command.ExecuteNonQuery();
+        }
+        public static void ModifyFamille(int RefFamille, string Nom)
+        {
+            var Command = new SQLiteCommand("UPDATE Familles SET Nom = '" + Nom + "' WHERE RefFamille = '" + RefFamille + "'", DataBase.Conn);
+            Command.ExecuteNonQuery();
+        }
+        public static void ModifySousFamille(int RefSousFamille, int RefFamille, string Nom)
+        {
+            var Command = new SQLiteCommand("UPDATE SousFamilles SET Nom = '" + Nom + "', RefFamille = '" + RefFamille + "' WHERE RefSousFamille = '" + RefSousFamille + "'", DataBase.Conn);
+            Command.ExecuteNonQuery();
+        }
+        public static void DeleteArticle(string Ref)
         {
             var Command = new SQLiteCommand("DELETE From Articles where RefArticle = '"+Ref+"'", DataBase.Conn);
             Command.ExecuteNonQuery();
         }
 
-        public static void SupprimerMarque(int RefMarque)
+        public static void DeleteMarque(int RefMarque)
         {
             var Command = new SQLiteCommand("DELETE From Marques where RefMarque = '" + RefMarque + "'", DataBase.Conn);
             Command.ExecuteNonQuery();
         }
 
-        public static void SupprimerSousFamille(int RefSousFamille)
+        public static void DeleteSousFamille(int RefSousFamille)
         {
             var Command = new SQLiteCommand("DELETE From SousFamilles where RefSousFamille = '" + RefSousFamille + "'", DataBase.Conn);
             Command.ExecuteNonQuery();
         }
 
-        public static void SupprimerFamille(int RefFamille)
+        public static void DeleteFamille(int RefFamille)
         {
             var Command = new SQLiteCommand("DELETE From Familles where RefFamille = '" + RefFamille + "'", DataBase.Conn);
             Command.ExecuteNonQuery();
@@ -61,7 +79,7 @@ namespace Hector
                 string Description = Reader.GetString(1);
                 int RefSousFamille = Reader.GetInt32(2);
                 int RefMarque = Reader.GetInt32(3);
-                float PrixHT = float.Parse(Reader.GetString(4));
+                float PrixHT = Reader.GetFloat(4);
                 int Quantite = Reader.GetInt32(5);
 
                 return new Article(RefArticle, Description, RefSousFamille, RefMarque, PrixHT, Quantite);
