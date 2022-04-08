@@ -32,6 +32,18 @@ namespace Hector
        
         public float PrixHT { get; set; }
         public int Quantite { get; set; }
+        internal static int Existe(string RefArticle)
+        {
+            int Ex = -1;
+            var Command = new SQLiteCommand("SELECT RefArticle from Articles where nom RefArticle '" + RefArticle + "'", DataBase.Conn);
+            SQLiteDataReader Reader = Command.ExecuteReader();
+            if (Reader.HasRows)
+            {
+                Reader.Read();
+                Ex = 1;
+            }
+            return Ex;
+        }
 
         internal static Article InsererArticle(string @Ref, string Description, int RefSousFamille, int RefMarque, float Prix, int Quantite)
         {

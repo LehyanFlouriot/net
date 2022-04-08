@@ -53,7 +53,7 @@ namespace Hector
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 1, 0, 1);
-            this.menuStrip1.Size = new System.Drawing.Size(1241, 26);
+            this.menuStrip1.Size = new System.Drawing.Size(1241, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.TabStop = true;
             this.menuStrip1.Text = "menuStrip1";
@@ -103,7 +103,7 @@ namespace Hector
             // splitContainer1
             // 
             this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 26);
+            this.splitContainer1.Location = new System.Drawing.Point(0, 30);
             this.splitContainer1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.splitContainer1.Name = "splitContainer1";
             // 
@@ -116,7 +116,7 @@ namespace Hector
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.listView1);
-            this.splitContainer1.Size = new System.Drawing.Size(1241, 492);
+            this.splitContainer1.Size = new System.Drawing.Size(1241, 488);
             this.splitContainer1.SplitterDistance = 407;
             this.splitContainer1.SplitterWidth = 3;
             this.splitContainer1.TabIndex = 2;
@@ -128,7 +128,7 @@ namespace Hector
             this.treeView1.Location = new System.Drawing.Point(0, 0);
             this.treeView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.treeView1.Name = "treeView1";
-            this.treeView1.Size = new System.Drawing.Size(407, 492);
+            this.treeView1.Size = new System.Drawing.Size(407, 488);
             this.treeView1.TabIndex = 1;
             this.treeView1.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.treeView1_AfterSelect);
             this.treeView1.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.treeView1_NodeMouseClick);
@@ -140,7 +140,7 @@ namespace Hector
             this.listView1.Location = new System.Drawing.Point(0, 0);
             this.listView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.listView1.Name = "listView1";
-            this.listView1.Size = new System.Drawing.Size(831, 492);
+            this.listView1.Size = new System.Drawing.Size(831, 488);
             this.listView1.TabIndex = 2;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;

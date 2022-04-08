@@ -54,7 +54,7 @@ namespace Hector
             this.FolderPath.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.FolderPath.Name = "FolderPath";
             this.FolderPath.Size = new System.Drawing.Size(396, 26);
-            this.FolderPath.TabIndex = 4;
+            this.FolderPath.TabIndex = 2;
             this.FolderPath.TabStop = false;
             // 
             // ButtonBrowse
